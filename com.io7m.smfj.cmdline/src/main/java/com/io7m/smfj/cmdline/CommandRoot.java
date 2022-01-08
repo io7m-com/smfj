@@ -21,6 +21,10 @@ import com.beust.jcommander.Parameter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+/**
+ * The root command.
+ */
+
 public class CommandRoot implements CommandType
 {
   @Parameter(

@@ -26,6 +26,10 @@ import java.util.Iterator;
 import java.util.ServiceLoader;
 import java.util.SortedSet;
 
+/**
+ * The formats command.
+ */
+
 @Parameters(commandDescription = "List supported formats")
 final class CommandFormats extends CommandRoot
 {

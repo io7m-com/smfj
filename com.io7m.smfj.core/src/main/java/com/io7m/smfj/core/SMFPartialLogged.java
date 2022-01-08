@@ -149,10 +149,18 @@ public final class SMFPartialLogged<A>
     return this.value;
   }
 
+  /**
+   * @return The list of errors
+   */
+
   public List<? extends SMFErrorType> errors()
   {
     return this.errors;
   }
+
+  /**
+   * @return The list of warnings
+   */
 
   public List<? extends SMFWarningType> warnings()
   {

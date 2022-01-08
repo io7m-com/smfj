@@ -45,6 +45,10 @@ import java.util.Optional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+/**
+ * The filter command.
+ */
+
 @Parameters(commandDescription = "Filter mesh data")
 public final class CommandFilter extends CommandRoot
 {

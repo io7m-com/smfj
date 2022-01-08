@@ -44,11 +44,10 @@
   </modules>
 
   <properties>
-    <com.codacy.id>a7ba30b8044e40839aa5b526cf02bb11</com.codacy.id>
-    <com.io7m.blackthorne.version>0.0.5</com.io7m.blackthorne.version>
+    <com.io7m.blackthorne.version>1.2.1</com.io7m.blackthorne.version>
     <com.io7m.immutables.version>2.8.3</com.io7m.immutables.version>
-    <com.io7m.jbssio.version>0.0.2</com.io7m.jbssio.version>
-    <com.io7m.smfj.jtensors.versionRange>9.0.0</com.io7m.smfj.jtensors.versionRange>
+    <com.io7m.jbssio.version>1.1.0</com.io7m.jbssio.version>
+    <com.io7m.smfj.jtensors.versionRange>10.0.0</com.io7m.smfj.jtensors.versionRange>
     <io7m.api.previousVersion>0.15.0</io7m.api.previousVersion>
   </properties>
 
@@ -174,7 +173,7 @@
       <dependency>
         <groupId>com.io7m.primogenitor</groupId>
         <artifactId>com.io7m.primogenitor.support</artifactId>
-        <version>6.2.0</version>
+        <version>7.0.0-beta0003</version>
       </dependency>
       <dependency>
         <groupId>com.io7m.jbssio</groupId>
@@ -189,7 +188,7 @@
       <dependency>
         <groupId>com.io7m.jxe</groupId>
         <artifactId>com.io7m.jxe.core</artifactId>
-        <version>0.0.2</version>
+        <version>1.0.0</version>
       </dependency>
 
       <dependency>
@@ -215,12 +214,12 @@
       <dependency>
         <groupId>commons-io</groupId>
         <artifactId>commons-io</artifactId>
-        <version>2.6</version>
+        <version>2.11.0</version>
       </dependency>
       <dependency>
         <groupId>commons-codec</groupId>
         <artifactId>commons-codec</artifactId>
-        <version>1.14</version>
+        <version>1.15</version>
       </dependency>
 
       <dependency>
@@ -241,33 +240,33 @@
       <dependency>
         <groupId>org.osgi</groupId>
         <artifactId>org.osgi.annotation.versioning</artifactId>
-        <version>1.1.0</version>
+        <version>1.1.2</version>
       </dependency>
       <dependency>
         <groupId>org.osgi</groupId>
         <artifactId>org.osgi.annotation.bundle</artifactId>
-        <version>1.0.0</version>
+        <version>1.1.1</version>
       </dependency>
 
       <dependency>
         <groupId>com.github.marschall</groupId>
         <artifactId>memoryfilesystem</artifactId>
-        <version>2.1.0</version>
+        <version>2.3.0</version>
       </dependency>
       <dependency>
         <groupId>org.mockito</groupId>
         <artifactId>mockito-core</artifactId>
-        <version>3.0.0</version>
+        <version>4.2.0</version>
       </dependency>
       <dependency>
         <groupId>org.junit.jupiter</groupId>
         <artifactId>junit-jupiter-engine</artifactId>
-        <version>5.6.0-M1</version>
+        <version>5.8.2</version>
       </dependency>
       <dependency>
         <groupId>org.junit.jupiter</groupId>
         <artifactId>junit-jupiter-api</artifactId>
-        <version>5.6.0-M1</version>
+        <version>5.8.2</version>
       </dependency>
       <dependency>
         <groupId>org.hamcrest</groupId>
@@ -297,6 +296,14 @@
                 <version>${com.io7m.immutables.version}</version>
               </dependency>
             </annotationProcessorPaths>
+          </configuration>
+        </plugin>
+
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-checkstyle-plugin</artifactId>
+          <configuration>
+            <suppressionsLocation>checkstyle-filter.xml</suppressionsLocation>
           </configuration>
         </plugin>
 

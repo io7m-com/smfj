@@ -22,13 +22,14 @@ import com.io7m.smfj.processing.api.SMFFilterCommandContext;
 import com.io7m.smfj.processing.api.SMFMemoryMesh;
 import com.io7m.smfj.processing.api.SMFMemoryMeshFilterType;
 import com.io7m.smfj.processing.api.SMFMetadata;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.net.URI;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.Collectors;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import static com.io7m.smfj.processing.api.SMFFilterCommandParsing.errorExpectedGotValidation;
 
@@ -53,10 +54,21 @@ public final class SMFMemoryMeshFilterMetadataRemove
     LOG = LoggerFactory.getLogger(SMFMemoryMeshFilterMetadataRemove.class);
   }
 
+  /**
+   * A version number.
+   */
+
   public static final class Version
   {
     private int major;
     private int minor;
+
+    /**
+     * Construct a version number.
+     *
+     * @param inMajor The major version
+     * @param inMinor The minor version
+     */
 
     public Version(
       final int inMajor,

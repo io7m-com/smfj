@@ -41,6 +41,10 @@ import java.util.Optional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+/**
+ * The probe command.
+ */
+
 @Parameters(commandDescription = "Probe a mesh file and display information")
 public final class CommandProbe extends CommandRoot
   implements SMFParserEventsType, SMFParserEventsHeaderType

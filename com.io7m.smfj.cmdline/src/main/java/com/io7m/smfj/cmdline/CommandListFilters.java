@@ -23,6 +23,10 @@ import com.io7m.smfj.processing.api.SMFFilterCommandModuleResolverType;
 import com.io7m.smfj.processing.api.SMFFilterCommandModuleType;
 import java.util.Map;
 
+/**
+ * The list-filters command.
+ */
+
 @Parameters(commandDescription = "List available filters")
 public final class CommandListFilters extends CommandRoot
 {
