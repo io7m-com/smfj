@@ -19,7 +19,7 @@
   <packaging>pom</packaging>
   <name>com.io7m.smfj</name>
   <description>Sequential mesh format</description>
-  <url>http://github.com/io7m/smfj</url>
+  <url>https://www.io7m.com/software/smfj</url>
 
   <modules>
     <module>com.io7m.smfj.blender</module>
