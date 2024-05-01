@@ -23,7 +23,7 @@ bl_info = {
   "description": "Export meshes to SMF format",
   "warning":     "",
   "wiki_url":    "",
-  "tracker_url": "https://github.com/io7m/smf/issues",
+  "tracker_url": "https://www.github.com/io7m-com/smf/issues",
   "category":    "Import-Export"
 }
 

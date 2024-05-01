@@ -601,48 +601,39 @@ public final class SMFSchemaParserProvider
     @Override
     public SMFPartialLogged<SMFSchema> parseSchema()
     {
+      final List<String> lines =
+        List.copyOf(IOUtils.readLines(this.stream, StandardCharsets.UTF_8));
+      final SMFTLineReaderType reader =
+        SMFTLineReaderList.create(this.uri, lines, 1);
+
       try {
-        final List<String> lines =
-          List.copyOf(IOUtils.readLines(this.stream, StandardCharsets.UTF_8));
-        final SMFTLineReaderType reader =
-          SMFTLineReaderList.create(this.uri, lines, 1);
-
-        try {
-          final Optional<List<String>> line = reader.line();
-          if (line.isPresent()) {
-            final SMFPartialLogged<SMFSchemaVersion> r_version =
-              this.parseVersion(reader.position(), line.get());
-            if (r_version.isFailed()) {
-              return SMFPartialLogged.failed(
-                r_version.errors(),
-                r_version.warnings());
-            }
-
-            final SMFSchemaVersion version = r_version.get();
-            if (version.major() == 1) {
-              return new ParserV1(version, reader, this.uri).parseSchema();
-            }
-
-            throw new UnimplementedCodeException();
+        final Optional<List<String>> line = reader.line();
+        if (line.isPresent()) {
+          final SMFPartialLogged<SMFSchemaVersion> r_version =
+            this.parseVersion(reader.position(), line.get());
+          if (r_version.isFailed()) {
+            return SMFPartialLogged.failed(
+              r_version.errors(),
+              r_version.warnings());
           }
 
-          final SMFParseError error =
-            SMFParseError.of(
-              reader.position(),
-              "Empty file: Must begin with an smf-schema version declaration",
-              Optional.empty());
-          return SMFPartialLogged.failed(error);
-        } catch (final IOException e) {
-          final SMFParseError error =
-            SMFParseError.of(reader.position(), "I/O error", Optional.of(e));
-          return SMFPartialLogged.failed(error);
+          final SMFSchemaVersion version = r_version.get();
+          if (version.major() == 1) {
+            return new ParserV1(version, reader, this.uri).parseSchema();
+          }
+
+          throw new UnimplementedCodeException();
         }
-      } catch (final IOException e) {
+
         final SMFParseError error =
           SMFParseError.of(
-            LexicalPosition.of(1, 0, Optional.of(this.uri)),
-            "I/O error",
-            Optional.of(e));
+            reader.position(),
+            "Empty file: Must begin with an smf-schema version declaration",
+            Optional.empty());
+        return SMFPartialLogged.failed(error);
+      } catch (final IOException e) {
+        final SMFParseError error =
+          SMFParseError.of(reader.position(), "I/O error", Optional.of(e));
         return SMFPartialLogged.failed(error);
       }
     }
