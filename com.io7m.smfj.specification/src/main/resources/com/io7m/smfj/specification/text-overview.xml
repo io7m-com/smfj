@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Section xmlns="urn:com.io7m.structural:8:0" id="4c398f50-3113-51cd-a204-45abb958d3a1"
+         title="Overview">
+
+  <Paragraph>
+    The <Term type="type">SMF/T</Term> format is a text encoding for
+    the <Link target="41ffed46-d986-5d4f-8890-eba8c6a49bdf">SMF model</Link>. Data specified in the text encoding is
+    separated into explicitly delimited <Link target="55695ccc-be55-55f7-a953-246f23611dfd">sections</Link>.
+  </Paragraph>
+
+  <Paragraph>
+    The format is line-based, and lines (excluding the very first line in the file) containing only whitespace, or lines
+    beginning with
+    <Term type="constant">U+0023</Term>
+    <Term type="constant">#</Term>
+    are ignored. In a given line, whitespace between tokens is insignificant.
+  </Paragraph>
+
+</Section>

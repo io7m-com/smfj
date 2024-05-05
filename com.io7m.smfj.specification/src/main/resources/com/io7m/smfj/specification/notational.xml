@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Section id="58aa2248-b9b8-5a71-890c-3f92993503af"
+         title="Notational Conventions"
+         xmlns="urn:com.io7m.structural:8:0">
+
+  <Subsection id="4f5ef2a9-e2cd-54c7-ae33-ba38ceeb3652"
+              title="Overview">
+    <Paragraph>
+      This section of the specification documents all notational conventions used throughout.
+    </Paragraph>
+  </Subsection>
+
+  <Subsection id="2ee42af2-4a12-5602-88a5-68734109186d"
+              title="Unicode">
+    <Paragraph>
+      The specification makes reference to the Unicode character set which, at the time of writing, is at
+      version <Term type="constant">9.0</Term>. The specification often references specific Unicode characters, and does
+      so using the standard notation <Term type="constant">U+NNNN</Term>, where
+      <Term type="variable">N</Term>
+      represents a hexadecimal digit. For example,
+      <Term type="constant">U+03BB</Term>
+      corresponds to the lowercase lambda symbol <Term type="constant">λ</Term>.
+    </Paragraph>
+  </Subsection>
+
+  <Subsection id="1ca87ad3-c290-5c62-b3c8-3e26274a563f"
+              title="EBNF">
+    <Paragraph>
+      The specification gives grammar definitions in <Term type="package">ISO/IEC 14977:1996</Term> Extended Backus-Naur
+      form.
+    </Paragraph>
+  </Subsection>
+
+  <Subsection id="9360a5e4-20bd-5764-9a6a-870246e858f2"
+              title="Haskell">
+    <Paragraph>
+      Rather than rely on untyped and ambiguous mathematical notation, this documentation expresses all mathematics and
+      type definitions in strict
+      <LinkExternal target="http://www.haskell.org/onlinereport/haskell2010/">Haskell 2010</LinkExternal>
+      with no extensions. All Haskell sources are included along with the documentation and can therefore be executed
+      from the command line
+      <LinkExternal target="http://www.haskell.org/haskellwiki/GHC/GHCi">GHCi</LinkExternal>
+      tool in order to interactively check results and experiment with functions.
+    </Paragraph>
+    <Paragraph>
+      When used within prose, functions are referred to using fully qualified notation, such as <Term type="expression">
+      (Vector3f.cross n t)</Term>. This is the application of the
+      <Term type="function">cross</Term>
+      function defined in the <Term type="package">Vector3f</Term> module, to the arguments <Term type="variable">n
+    </Term> and <Term type="variable">t</Term>.
+    </Paragraph>
+  </Subsection>
+
+  <Subsection id="bfbc3398-0001-5600-a60e-88f06af89396"
+              title="FIX SBE">
+    <Paragraph>
+      Definitions of binary structures are given as
+      <LinkExternal target="http://fixprotocol.io/2016/sbe/">FIX SBE</LinkExternal>
+      definitions. All values are considered to be in big-endian byte order unless otherwise specified.
+    </Paragraph>
+  </Subsection>
+
+  <Subsection id="afc1d7b2-384d-5055-8503-51ba481e4468"
+              title="Requirement Levels">
+    <Paragraph>
+      This specification uses terms such as MUST, MUST NOT, SHOULD, SHOULD NOT, etc, according to the definitions given
+      in <LinkExternal target="http://www.ietf.org/rfc/rfc2119.txt">RFC 2119</LinkExternal>.
+    </Paragraph>
+  </Subsection>
+
+</Section>

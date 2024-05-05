@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Section xmlns="urn:com.io7m.structural:8:0"
+         id="6dd79b55-6621-5c66-b468-77aa86bc20c0"
+         title="Section - triangles">
+  <Subsection id="0bf140dc-363d-54c3-9c2a-89679ebe3e27"
+              title="Definition">
+    <Paragraph>
+      The <Term type="command">triangles</Term> section specifies triangle data that will appear in the model.
+    </Paragraph>
+
+    <FormalItem id="b74cca49-5d22-5fdd-8789-8915b639c4a9"
+                title="triangles">
+      <Verbatim>
+        <xi:include href="smft-triangles.ebnf"
+                    parse="text"
+                    xmlns:xi="http://www.w3.org/2001/XInclude"/>
+      </Verbatim>
+    </FormalItem>
+
+    <Paragraph>
+      The command takes no arguments.
+    </Paragraph>
+
+    <Paragraph>
+      In a file that is specified to contain <Term type="variable">k</Term> triangles, the next
+      <Term type="variable">k</Term>
+      non-empty, non-commented lines will contain exactly
+      <Term type="constant">3</Term>
+      whitespace-separated unsigned integer values each representing the index of a vertex. Implementations MUST raise
+      errors if there are not exactly <Term type="variable">k</Term> triangles specified before section's
+      <Link target="c4df0bae-7c47-5c8d-90da-3bddf539e1c8">end</Link>
+      command.
+    </Paragraph>
+  </Subsection>
+</Section>

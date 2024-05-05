@@ -1,9 +1,0 @@
-[part [title SMF/T - Text Encoding] [id smft]]
-
-[import "text-overview.sdi"]
-[import "text-sections.sdi"]
-[import "text-smf.sdi"]
-[import "text-triangles.sdi"]
-[import "text-vertices-noninterleaved.sdi"]
-[import "text-metadata.sdi"]
-[import "text-example.sdi"]

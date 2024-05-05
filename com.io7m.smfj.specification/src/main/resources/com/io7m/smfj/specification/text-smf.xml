@@ -1,0 +1,318 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Section xmlns="urn:com.io7m.structural:8:0"
+         id="955596e3-9a19-5df8-93f2-c9b51e9e867a"
+         title="Section - smf">
+
+  <Subsection id="540892b3-e566-5829-a7a5-60621e0656cb"
+              title="Definition">
+    <Paragraph>
+      The <Term type="command">smf</Term> section specifies the <Term type="term">major</Term> and
+      <Term type="term">minor</Term>
+      version of the specification to which the rest of the file is expected to conform. The first argument specifies
+      the <Term type="term">major</Term> version, and the second argument specifies the <Term type="term">minor</Term> version.
+      Implementations MUST immediately reject files that are of unsupported
+      <Term type="term">major</Term>
+      versions, and MUST halt processing of the rest of the file if the version numbers cannot be parsed.
+    </Paragraph>
+
+    <Paragraph>
+      The command takes the following arguments:
+    </Paragraph>
+
+    <FormalItem id="09ea08de-d325-59eb-bda4-945fa7b24e1c"
+                title="smf Arguments">
+      <ListOrdered>
+        <Item>The non-negative SMF major version</Item>
+        <Item>The non-negative SMF minor version</Item>
+      </ListOrdered>
+    </FormalItem>
+
+    <FormalItem id="7f75e187-f524-5378-b572-5a6b0cbb8e9b"
+                title="smf">
+      <Verbatim>
+        <xi:include href="smft-smf.ebnf"
+                    parse="text"
+                    xmlns:xi="http://www.w3.org/2001/XInclude"/>
+      </Verbatim>
+    </FormalItem>
+
+    <Paragraph>
+      The contents of an <Term type="command">smf</Term> section are a series of
+      <Link target="a3192614-ba1d-5af0-a278-3d0d653b018d">subcommands</Link>
+      with at most one subcommand appearing on each line within the section. A <Term type="term">subcommand</Term> consists
+      of the subcommand's name and a series of zero or more arguments. Implementations MUST ignore subcommands that have
+      unrecognized names, but SHOULD log warning messages to indicate that unrecognized subcommands have been specified.
+    </Paragraph>
+  </Subsection>
+
+  <Subsection id="a3192614-ba1d-5af0-a278-3d0d653b018d"
+              title="Subcommands">
+
+    <Paragraph>
+      This version of the specification defines the following
+      <Term type="command">smf</Term>
+      <Term type="term">subcommands</Term>:
+    </Paragraph>
+
+    <FormalItem id="28a595ed-b971-5dcc-a1b2-5519b5a3c586"
+                title="Subcommands">
+      <ListUnordered>
+        <Item>
+          <Link target="adbb3887-03d1-5ab9-b690-04e1c54b7cbb">attribute</Link>
+        </Item>
+        <Item>
+          <Link target="5fe0031f-1147-5391-b281-d3ab5889f845">coordinates</Link>
+        </Item>
+        <Item>
+          <Link target="bd5d5d96-2aed-5be4-8cab-70d3e20aa9f8">endianness</Link>
+        </Item>
+        <Item>
+          <Link target="db3dd257-fe8b-5904-a873-bb5c7410390c">schema</Link>
+        </Item>
+        <Item>
+          <Link target="3be7ae03-b4f2-5900-9aaf-a3835afbbff1">triangles</Link>
+        </Item>
+        <Item>
+          <Link target="b9d5daeb-4915-5f95-8782-f5dbaa3ba781">vertices</Link>
+        </Item>
+      </ListUnordered>
+    </FormalItem>
+  </Subsection>
+
+  <Subsection id="adbb3887-03d1-5ab9-b690-04e1c54b7cbb"
+              title="Subcommand - attribute">
+    <Paragraph>
+      The <Term type="command">attribute</Term> subcommand specifies an
+      <Link target="e71d5f97-ed61-5ce0-bbb3-e65a2f3f8ba4">attribute</Link>
+      that will appear in the model.
+    </Paragraph>
+
+    <FormalItem id="e1afb5a5-5d13-5c46-8b14-447f1258097c"
+                title="attribute">
+      <Verbatim>
+        <xi:include href="smft-smf-attribute.ebnf"
+                    parse="text"
+                    xmlns:xi="http://www.w3.org/2001/XInclude"/>
+      </Verbatim>
+    </FormalItem>
+
+    <Paragraph>
+      The subcommand takes the following arguments:
+    </Paragraph>
+
+    <FormalItem id="b7759295-e02c-5382-90c0-04ea3e4d0419"
+                title="attributes Arguments">
+      <ListOrdered>
+        <Item>The name of the attribute</Item>
+        <Item>The type of the components in the attribute</Item>
+        <Item>The non-negative number of components in the attribute</Item>
+        <Item>The non-negative size in bits of an individual component</Item>
+      </ListOrdered>
+    </FormalItem>
+
+    <Paragraph>
+      The subcommand is allowed to appear any number of times, but all specified attribute names must be unique.
+    </Paragraph>
+  </Subsection>
+
+  <Subsection id="5fe0031f-1147-5391-b281-d3ab5889f845"
+              title="Subcommand - coordinates">
+    <Paragraph>
+      The <Term type="command">coordinates</Term> subcommand specifies the
+      <Link target="06f063de-5772-5748-800d-1358dd4b5599">coordinate space</Link>
+      of the mesh data that will appear in the model.
+    </Paragraph>
+
+    <FormalItem id="8dbe2d88-c7f7-553d-8069-eebea4b84e14"
+                title="coordinates">
+      <Verbatim>
+        <xi:include href="smft-smf-coordinates.ebnf"
+                    parse="text"
+                    xmlns:xi="http://www.w3.org/2001/XInclude"/>
+      </Verbatim>
+    </FormalItem>
+
+    <Paragraph>
+      The subcommand takes the following arguments:
+    </Paragraph>
+
+    <FormalItem id="d233f429-1549-531f-b0c7-e46ff69f1c65"
+                title="coordinates Arguments">
+      <ListOrdered>
+        <Item>The axis for the <Term type="term">right</Term> direction
+        </Item>
+        <Item>The axis for the <Term type="term">up</Term> direction
+        </Item>
+        <Item>The axis for the <Term type="term">forward</Term> direction
+        </Item>
+        <Item>The triangle
+          <Term type="term">winding order</Term>
+        </Item>
+      </ListOrdered>
+    </FormalItem>
+
+    <Paragraph>
+      If the subcommand does not appear in the section, implementations MUST behave as if the following subcommand had
+      been specified:
+    </Paragraph>
+
+    <FormalItem id="6c7c6664-30e2-50cb-baf2-dce2e27d7127"
+                title="coordinates Default">
+      <Verbatim>coordinates +x +y -z counter-clockwise</Verbatim>
+    </FormalItem>
+  </Subsection>
+
+  <Subsection id="bd5d5d96-2aed-5be4-8cab-70d3e20aa9f8"
+              title="Subcommand - endianness">
+    <Paragraph>
+      The <Term type="command">endianness</Term> subcommand specifies the byte order of data that will appear in the
+      file. Because byte ordering is irrelevant in an SMF/T file, the effect of evaluating this subcommand is to set the
+      byte order in the parsed SMF model to the specified value. This will affect subsequent serializations of the model
+      to formats with which byte ordering is relevant (such as SMF/B) .
+    </Paragraph>
+
+    <FormalItem id="88262ff1-ad66-506b-afe3-ab912618ade2"
+                title="endianness">
+      <Verbatim>
+        <xi:include href="smft-smf-endianness.ebnf"
+                    parse="text"
+                    xmlns:xi="http://www.w3.org/2001/XInclude"/>
+      </Verbatim>
+    </FormalItem>
+
+    <Paragraph>
+      The subcommand takes the following arguments:
+    </Paragraph>
+
+    <FormalItem id="82133640-cd3d-50f9-b0b8-999623d6039b"
+                title="attributes Arguments">
+      <ListOrdered>
+        <Item>The name of the byte order</Item>
+      </ListOrdered>
+    </FormalItem>
+
+    <Paragraph>
+      The subcommand is allowed to appear at most once. If the command does not appear, implementations MUST behave as
+      if big-endian byte ordering was specified.
+    </Paragraph>
+  </Subsection>
+
+  <Subsection id="db3dd257-fe8b-5904-a873-bb5c7410390c"
+              title="Subcommand - schema">
+    <Paragraph>
+      The <Term type="command">schema</Term> command specifies the
+      <Link target="c9f14807-8545-5bcd-953d-f1e7b4ec9934">schema identifier</Link>
+      for the file.
+    </Paragraph>
+
+    <FormalItem id="2699fc1c-3452-5520-ae05-7cb14d0b48a9"
+                title="schema">
+      <Verbatim>
+        <xi:include href="smft-smf-schema.ebnf"
+                    parse="text"
+                    xmlns:xi="http://www.w3.org/2001/XInclude"/>
+      </Verbatim>
+    </FormalItem>
+    <Paragraph>
+      The command takes the following arguments:
+    </Paragraph>
+    <FormalItem id="ad1d8d94-3c19-5816-a692-758387b36601"
+                title="schema Arguments">
+      <ListOrdered>
+        <Item>The schema ID string</Item>
+        <Item>The non-negative schema major version</Item>
+        <Item>The non-negative schema minor version</Item>
+      </ListOrdered>
+    </FormalItem>
+  </Subsection>
+
+  <Subsection id="3be7ae03-b4f2-5900-9aaf-a3835afbbff1"
+              title="Subcommand - triangles">
+    <Paragraph>
+      The <Term type="command">triangles</Term> subcommand specifies the number of
+      <Link target="3b7209f1-f0e6-5921-ace6-1fb6bd883bbd">triangles</Link>
+      that will appear in the model, and the size of the vertex indices in bits.
+    </Paragraph>
+
+    <FormalItem id="b857684f-a5de-5280-a508-9e2a0b47e3e9"
+                title="triangles">
+      <Verbatim>
+        <xi:include href="smft-smf-triangles.ebnf"
+                    parse="text"
+                    xmlns:xi="http://www.w3.org/2001/XInclude"/>
+      </Verbatim>
+    </FormalItem>
+
+    <Paragraph>
+      The subcommand takes the following arguments:
+    </Paragraph>
+
+    <FormalItem id="589ada4d-bcb9-518b-8a7f-72a79891135b"
+                title="triangles Arguments">
+      <ListOrdered>
+        <Item>The non-negative triangle count</Item>
+        <Item>The non-negative size in bits of a triangle vertex index</Item>
+      </ListOrdered>
+    </FormalItem>
+
+    <Paragraph>
+      If the subcommand does not appear in the section, implementations MUST behave as if the following subcommand had
+      been specified:
+    </Paragraph>
+
+    <FormalItem id="6a2ffdea-db66-51da-a6d0-6e08e1ad16c1"
+                title="vertices Default">
+      <Verbatim>trianges 0 32</Verbatim>
+    </FormalItem>
+
+    <Paragraph>
+      Parsers MUST raise an appropriate error if a non-zero triangle count is specified but no triangles are actually
+      provided in any following section.
+    </Paragraph>
+  </Subsection>
+
+  <Subsection id="b9d5daeb-4915-5f95-8782-f5dbaa3ba781"
+              title="Subcommand - vertices">
+    <Paragraph>
+      The <Term type="command">vertices</Term> subcommand specifies the number of
+      <Link target="81cdfad5-986c-56d4-9ed8-25f9721b50f7">vertices</Link>
+      that will appear in the model for each attribute.
+    </Paragraph>
+
+    <FormalItem id="43363af5-bb23-576a-aa6d-60dc1ded05d3"
+                title="vertices">
+      <Verbatim>
+        <xi:include href="smft-smf-vertices.ebnf"
+                    parse="text"
+                    xmlns:xi="http://www.w3.org/2001/XInclude"/>
+      </Verbatim>
+    </FormalItem>
+
+    <Paragraph>
+      The subcommand takes the following arguments:
+    </Paragraph>
+
+    <FormalItem id="ca3e4cb6-9dbd-5761-a2bb-9642651eedff"
+                title="vertices Arguments">
+      <ListOrdered>
+        <Item>The non-negative number of vertices that will appear in the file</Item>
+      </ListOrdered>
+    </FormalItem>
+
+    <Paragraph>
+      If the subcommand does not appear in the section, implementations MUST behave as if the following subcommand had
+      been specified:
+    </Paragraph>
+
+    <FormalItem id="713eb0a0-7456-5500-9ec7-c7a46a1ddf09"
+                title="vertices Default">
+      <Verbatim>vertices 0</Verbatim>
+    </FormalItem>
+
+    <Paragraph>
+      Parsers MUST raise an appropriate error if a non-zero vertex count is specified but no vertices are actually
+      provided in any following section.
+    </Paragraph>
+  </Subsection>
+</Section>

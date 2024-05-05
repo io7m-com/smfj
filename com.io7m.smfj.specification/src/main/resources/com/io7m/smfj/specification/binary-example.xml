@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Section id="e5eaa306-b0ef-5a8a-b7a2-052dc744bd34"
+         title="Example"
+         xmlns="urn:com.io7m.structural:8:0">
+
+  <Paragraph>
+    A diagram of an example <Term type="type">SMF/B</Term> file is as follows:
+  </Paragraph>
+
+  <FormalItem id="488b13a1-d477-5099-81ec-fa2f3cc331e5"
+                 title="Example">
+    <Image source="diagram.png">Example file</Image>
+  </FormalItem>
+
+</Section>

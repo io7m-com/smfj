@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Section id="e8de6f09-106e-5a34-aeaf-cc7d945927cd"
+         title="SMF/T - Text Encoding"
+         xmlns="urn:com.io7m.structural:8:0"
+         xmlns:xi="http://www.w3.org/2001/XInclude">
+
+  <xi:include href="text-overview.xml"/>
+  <xi:include href="text-smf.xml"/>
+  <xi:include href="text-sections.xml"/>
+  <xi:include href="text-metadata.xml"/>
+  <xi:include href="text-triangles.xml"/>
+  <xi:include href="text-vertices-noninterleaved.xml"/>
+  <xi:include href="text-example.xml"/>
+
+</Section>

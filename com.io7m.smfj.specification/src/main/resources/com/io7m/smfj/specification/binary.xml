@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Section id="a3f0aaa9-77c9-5b5b-a772-f6653c081620"
+         title="SMF/B - Binary Encoding"
+         xmlns="urn:com.io7m.structural:8:0"
+         xmlns:xi="http://www.w3.org/2001/XInclude">
+
+  <xi:include href="binary-overview.xml"/>
+  <xi:include href="binary-header.xml"/>
+  <xi:include href="binary-smf.xml"/>
+  <xi:include href="binary-sections.xml"/>
+  <xi:include href="binary-metadata.xml"/>
+  <xi:include href="binary-triangles.xml"/>
+  <xi:include href="binary-vertices-noninterleaved.xml"/>
+  <xi:include href="binary-end.xml"/>
+  <xi:include href="binary-example.xml"/>
+
+</Section>

@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Section xmlns="urn:com.io7m.structural:8:0"
+         id="1b954b88-d1f3-578d-a746-9a4717d929bb"
+         title="Section - vertices-noninterleaved">
+
+  <Subsection id="07e9ed51-d25d-5af6-8711-b4255ced0eb5"
+              title="Definition">
+    <Paragraph>
+      The <Term type="command">vertices-noninterleaved</Term> section specifies the vertex data that will appear in the
+      model.
+    </Paragraph>
+    <Paragraph>
+      The contents of a <Term type="command">vertices-noninterleaved</Term> section are a series of
+      <Link target="234403a1-a83b-5b58-9da0-c6870630d7c6">subcommands</Link>
+      with at most one subcommand appearing on each line within the section. A <Term type="term">subcommand</Term> consists
+      of the subcommand's name and a series of zero or more arguments. Implementations MUST ignore subcommands that have
+      unrecognized names, but SHOULD log warning messages to indicate that unrecognized subcommands have been specified.
+    </Paragraph>
+  </Subsection>
+
+  <Subsection id="234403a1-a83b-5b58-9da0-c6870630d7c6"
+              title="Subcommands">
+    <Paragraph>
+      This version of the specification defines the following
+      <Term type="command">vertices-noninterleaved</Term>
+      <Term type="term">subcommands</Term>:
+    </Paragraph>
+    <FormalItem id="1c0b68fc-fc17-5bbb-9a53-27a0fbb8d54e"
+                title="Subcommands">
+      <ListUnordered>
+        <Item>
+          <Link target="725a196d-3d82-5cbf-99b2-ff0053fcfaa1">attribute</Link>
+        </Item>
+      </ListUnordered>
+    </FormalItem>
+  </Subsection>
+
+  <Subsection id="725a196d-3d82-5cbf-99b2-ff0053fcfaa1"
+              title="Subcommand - attribute">
+    <Paragraph>
+      The <Term type="command">attribute</Term> subcommand indicates the start of data for an attribute.
+    </Paragraph>
+
+    <FormalItem id="f54eb44a-b093-5356-ba5a-7938f5344118"
+                title="attribute">
+      <Verbatim>
+        <xi:include href="smft-vertices-noninterleaved-attribute.ebnf"
+                    parse="text"
+                    xmlns:xi="http://www.w3.org/2001/XInclude"/>
+      </Verbatim>
+    </FormalItem>
+
+    <Paragraph>
+      The command takes the following arguments:
+    </Paragraph>
+
+    <FormalItem id="01d986f8-30b0-5dd5-b35c-6553b086212f"
+                title="attribute Arguments">
+      <ListOrdered>
+        <Item>The name of the attribute</Item>
+      </ListOrdered>
+    </FormalItem>
+
+    <Paragraph>
+      The named attribute must have been declared in the
+      <Link target="955596e3-9a19-5df8-93f2-c9b51e9e867a">smf</Link>
+      section; Implementations MUST raise errors when encountering <Term type="command">attribute</Term> subcommands
+      that name attributes that were not declared in the
+      <Link target="955596e3-9a19-5df8-93f2-c9b51e9e867a">smf</Link>
+      section.
+    </Paragraph>
+
+    <Paragraph>
+      For an attribute <Term type="variable">a</Term> that specifies <Term type="variable">c</Term> components of
+      type <Term type="variable">t</Term>, in a file that is specified to contain
+      <Term type="variable">v</Term>
+      vertices, the next <Term type="variable">v</Term> non-empty, non-commented lines will contain exactly
+      <Term type="variable">c</Term>
+      whitespace-separated values of type
+      <Term type="variable">t</Term>. Implementations MUST raise errors if there are not exactly
+      <Term type="variable">v</Term>
+      vertex values specified before section's <Link target="c4df0bae-7c47-5c8d-90da-3bddf539e1c8">end</Link> command or
+      the start of the next <Term type="command">attribute</Term> subcommand, whichever occurs first.
+    </Paragraph>
+  </Subsection>
+</Section>

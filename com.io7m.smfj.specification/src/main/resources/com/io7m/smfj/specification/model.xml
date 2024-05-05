@@ -1,0 +1,518 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Section id="41ffed46-d986-5d4f-8890-eba8c6a49bdf"
+         title="Model"
+         xmlns="urn:com.io7m.structural:8:0">
+
+  <Subsection id="e228e23d-910f-5124-ba27-92b696a53ab3"
+              title="Overview">
+    <Paragraph>
+      The SMF model is a minimalist, portable storage model for
+      <Term type="term">triangle mesh data</Term>. SMF files are intended to be consumed by 3D rendering engines
+      directly and therefore do not contain any complex interchange features common to formats such as COLLADA
+      <LinkFootnote target="b15c71a5-8fbd-58dc-bbb4-dcf49e178598"/>. The
+      <Link target="e8de6f09-106e-5a34-aeaf-cc7d945927cd">text</Link>
+      and
+      <Link target="a3f0aaa9-77c9-5b5b-a772-f6653c081620">binary</Link>
+      encodings of the model are designed to be trivial to parse and to permit the easy construction of extremely fast
+      event-based parsers that do not require loading the entire file into memory for processing.
+    </Paragraph>
+    <Paragraph>
+      The format is <Link target="a55cfb83-ff4e-587f-80e0-39c247e73af0">versioned</Link>, and is specified in a manner
+      that allows for implementations to provide strong guarantees of <Term type="term">forwards</Term> and
+      <Term type="term">backwards</Term>
+      compatibility as the specification evolves.
+    </Paragraph>
+    <Paragraph>
+      The version of the SMF model described by this specification is <Term type="expression">(2, 0)</Term>. See
+      <Link target="a55cfb83-ff4e-587f-80e0-39c247e73af0">versioning</Link>
+      for details.
+    </Paragraph>
+  </Subsection>
+
+  <Subsection id="a55cfb83-ff4e-587f-80e0-39c247e73af0"
+              title="Versioning">
+    <Subsection title="Overview">
+      <Paragraph>
+        The SMF specification is versioned via a restricted subset of the
+        <LinkExternal target="http://semver.org/">Semantic Versioning</LinkExternal>
+        specification. The SMF specification has a <Term type="term">major</Term> and
+        <Term type="term">minor</Term>
+        version number, with <Term type="term">major</Term> version increments denoting incompatible changes, and
+        <Term type="term">minor</Term>
+        version increments denoting new functionality. There is no
+        <Term type="term">patch</Term>
+        version number. A version of the specification with
+        <Term type="term">major</Term>
+        version
+        <Term type="variable">m</Term>
+        and <Term type="term">minor</Term> version <Term type="variable">n</Term> is denoted as specification
+        version <Term type="expression">(m, n)</Term>.
+      </Paragraph>
+    </Subsection>
+
+    <Subsection id="04ffe067-6ac2-53f8-b4b1-c904ce9ae002"
+                title="Forward Compatibility">
+      <Paragraph>
+        Assuming a version of the SMF specification <Term type="variable">m</Term>, an update to the specification that
+        yields version <Term type="variable">n</Term> such that
+        <Term type="expression">n &gt; m</Term>
+        is considered to be <Term type="term">forwards compatible</Term> if a parser that supports format version
+        <Term type="variable">m</Term>
+        can read files that were written using format version <Term type="variable">n</Term>.
+      </Paragraph>
+    </Subsection>
+
+    <Subsection id="742f9467-b46b-587c-8c7d-7cfa99b99ca9"
+                title="Backward Compatibility">
+      <Paragraph>
+        Assuming a version of the SMF specification <Term type="variable">m</Term>, an update to the specification that
+        yields version <Term type="variable">n</Term> such that
+        <Term type="expression">n &gt; m</Term>
+        is considered to be <Term type="term">backwards compatible</Term> if a parser that supports format version
+        <Term type="variable">n</Term>
+        can read files that were written using format version <Term type="variable">m</Term>.
+      </Paragraph>
+    </Subsection>
+
+    <Subsection id="595b9e28-e4a8-57d0-81e3-66d56ae48287"
+                title="Compatibility">
+      <Paragraph>
+        The SMF specification is designed such that a correctly-written parser implementation that supports a
+        <Term type="term">major</Term>
+        version <Term type="variable">m</Term> is able to support the set of versions
+        <Term type="expression">∀n. (m, n)</Term>. This implies full forwards and backwards compatibility for parsers
+        when the
+        <Term type="term">major</Term>
+        version is unchanged.
+      </Paragraph>
+      <Paragraph>
+        Changes that would cause a parser supporting an older version of the specification to fail to read a file
+        written according to a newer version of the specification MUST imply an increment in the
+        <Term type="term">major</Term>
+        version of the specification.
+      </Paragraph>
+      <Paragraph>
+        Changes that would cause a parser supporting a newer version of the specification to fail to read a file written
+        according to an older version of the specification MUST imply an increment in the
+        <Term type="term">major</Term>
+        version of the specification.
+      </Paragraph>
+      <Paragraph>
+        An implication of the above rules is that new features added to the specification must be added in a manner that
+        allows them to be ignored by older parsers, lest the <Term type="term">major</Term> version of the specification
+        be incremented on every update.
+      </Paragraph>
+    </Subsection>
+  </Subsection>
+
+  <Subsection id="4461fd08-3942-52b6-8d2d-64df39964959"
+              title="Mesh">
+    <Paragraph>A <Term type="term">mesh</Term> in the SMF model is a set
+      of <Link target="3b7209f1-f0e6-5921-ace6-1fb6bd883bbd">triangles</Link>.
+    </Paragraph>
+  </Subsection>
+
+  <Subsection id="e71d5f97-ed61-5ce0-bbb3-e65a2f3f8ba4"
+              title="Attributes">
+    <Paragraph>
+      An <Term type="term">attribute</Term> in the SMF model is a uniquely-named array of elements of a
+      given <Term type="term">type</Term>. All attributes within a particular SMF file have the same number of elements.
+      The <Term type="term">type</Term> of an attribute is a 3-tuple <Term type="expression">(c, n, s)</Term>, where
+      <Term type="expression">c</Term>
+      is a <Term type="term">component type</Term>,
+      <Term type="expression">n</Term>
+      is a <Term type="term">component count</Term>, and
+      <Term type="expression">s</Term>
+      is a
+      <Term type="term">component size</Term>
+      expressed in bits.
+    </Paragraph>
+
+    <Paragraph>
+      This version of the specification defines three basic <Term type="term">component types</Term>: <Term type="term">
+      signed integers</Term>, <Term type="term">unsigned integers</Term>, and <Term type="term">floating point
+      numbers</Term>. Floating point numbers are
+      <LinkExternal target="https://en.wikipedia.org/wiki/IEEE_754">IEEE 754</LinkExternal>
+      floating point values.
+    </Paragraph>
+
+    <FormalItem id="2fc278a1-ad2d-5f63-965a-a27bdf30d7bb"
+                title="Attribute Type">
+      <Verbatim>
+        <xi:include href="attribute.hs"
+                    parse="text"
+                    xmlns:xi="http://www.w3.org/2001/XInclude"/>
+      </Verbatim>
+    </FormalItem>
+
+    <Paragraph>
+      Attribute names may be at most <Term type="constant">64</Term> characters in length and must conform to the
+      following syntax:
+    </Paragraph>
+
+    <FormalItem id="0e84d9f0-e1cb-5bbf-b043-36959efa0231"
+                title="Attribute Name Syntax">
+      <Verbatim>
+        <xi:include href="attribute-name.ebnf"
+                    parse="text"
+                    xmlns:xi="http://www.w3.org/2001/XInclude"/>
+      </Verbatim>
+    </FormalItem>
+
+    <Paragraph>
+      Implementations are required to support attributes of at least the following types:
+    </Paragraph>
+
+    <FormalItem id="937217e3-b90c-5b17-9a69-8e71234beae0"
+                title="Types">
+      <Table type="genericTable">
+        <Columns>
+          <Column>Component Type</Column>
+          <Column>Component Count</Column>
+          <Column>Component size (bits)</Column>
+        </Columns>
+        <Row>
+          <Cell>Signed integer</Cell>
+          <Cell>1</Cell>
+          <Cell>8</Cell>
+        </Row>
+        <Row>
+          <Cell>Signed integer</Cell>
+          <Cell>2</Cell>
+          <Cell>8</Cell>
+        </Row>
+        <Row>
+          <Cell>Signed integer</Cell>
+          <Cell>3</Cell>
+          <Cell>8</Cell>
+        </Row>
+        <Row>
+          <Cell>Signed integer</Cell>
+          <Cell>4</Cell>
+          <Cell>8</Cell>
+        </Row>
+        <Row>
+          <Cell>Signed integer</Cell>
+          <Cell>1</Cell>
+          <Cell>16</Cell>
+        </Row>
+        <Row>
+          <Cell>Signed integer</Cell>
+          <Cell>2</Cell>
+          <Cell>16</Cell>
+        </Row>
+        <Row>
+          <Cell>Signed integer</Cell>
+          <Cell>3</Cell>
+          <Cell>16</Cell>
+        </Row>
+        <Row>
+          <Cell>Signed integer</Cell>
+          <Cell>4</Cell>
+          <Cell>16</Cell>
+        </Row>
+        <Row>
+          <Cell>Signed integer</Cell>
+          <Cell>1</Cell>
+          <Cell>32</Cell>
+        </Row>
+        <Row>
+          <Cell>Signed integer</Cell>
+          <Cell>2</Cell>
+          <Cell>32</Cell>
+        </Row>
+        <Row>
+          <Cell>Signed integer</Cell>
+          <Cell>3</Cell>
+          <Cell>32</Cell>
+        </Row>
+        <Row>
+          <Cell>Signed integer</Cell>
+          <Cell>4</Cell>
+          <Cell>32</Cell>
+        </Row>
+        <Row>
+          <Cell>Signed integer</Cell>
+          <Cell>1</Cell>
+          <Cell>64</Cell>
+        </Row>
+        <Row>
+          <Cell>Signed integer</Cell>
+          <Cell>2</Cell>
+          <Cell>64</Cell>
+        </Row>
+        <Row>
+          <Cell>Signed integer</Cell>
+          <Cell>3</Cell>
+          <Cell>64</Cell>
+        </Row>
+        <Row>
+          <Cell>Signed integer</Cell>
+          <Cell>4</Cell>
+          <Cell>64</Cell>
+        </Row>
+        <Row>
+          <Cell>Unsigned integer</Cell>
+          <Cell>1</Cell>
+          <Cell>8</Cell>
+        </Row>
+        <Row>
+          <Cell>Unsigned integer</Cell>
+          <Cell>2</Cell>
+          <Cell>8</Cell>
+        </Row>
+        <Row>
+          <Cell>Unsigned integer</Cell>
+          <Cell>3</Cell>
+          <Cell>8</Cell>
+        </Row>
+        <Row>
+          <Cell>Unsigned integer</Cell>
+          <Cell>4</Cell>
+          <Cell>8</Cell>
+        </Row>
+        <Row>
+          <Cell>Unsigned integer</Cell>
+          <Cell>1</Cell>
+          <Cell>16</Cell>
+        </Row>
+        <Row>
+          <Cell>Unsigned integer</Cell>
+          <Cell>2</Cell>
+          <Cell>16</Cell>
+        </Row>
+        <Row>
+          <Cell>Unsigned integer</Cell>
+          <Cell>3</Cell>
+          <Cell>16</Cell>
+        </Row>
+        <Row>
+          <Cell>Unsigned integer</Cell>
+          <Cell>4</Cell>
+          <Cell>16</Cell>
+        </Row>
+        <Row>
+          <Cell>Unsigned integer</Cell>
+          <Cell>1</Cell>
+          <Cell>32</Cell>
+        </Row>
+        <Row>
+          <Cell>Unsigned integer</Cell>
+          <Cell>2</Cell>
+          <Cell>32</Cell>
+        </Row>
+        <Row>
+          <Cell>Unsigned integer</Cell>
+          <Cell>3</Cell>
+          <Cell>32</Cell>
+        </Row>
+        <Row>
+          <Cell>Unsigned integer</Cell>
+          <Cell>4</Cell>
+          <Cell>32</Cell>
+        </Row>
+        <Row>
+          <Cell>Unsigned integer</Cell>
+          <Cell>1</Cell>
+          <Cell>64</Cell>
+        </Row>
+        <Row>
+          <Cell>Unsigned integer</Cell>
+          <Cell>2</Cell>
+          <Cell>64</Cell>
+        </Row>
+        <Row>
+          <Cell>Unsigned integer</Cell>
+          <Cell>3</Cell>
+          <Cell>64</Cell>
+        </Row>
+        <Row>
+          <Cell>Unsigned integer</Cell>
+          <Cell>4</Cell>
+          <Cell>64</Cell>
+        </Row>
+        <Row>
+          <Cell>IEEE754 floating point</Cell>
+          <Cell>1</Cell>
+          <Cell>16</Cell>
+        </Row>
+        <Row>
+          <Cell>IEEE754 floating point</Cell>
+          <Cell>2</Cell>
+          <Cell>16</Cell>
+        </Row>
+        <Row>
+          <Cell>IEEE754 floating point</Cell>
+          <Cell>3</Cell>
+          <Cell>16</Cell>
+        </Row>
+        <Row>
+          <Cell>IEEE754 floating point</Cell>
+          <Cell>4</Cell>
+          <Cell>16</Cell>
+        </Row>
+        <Row>
+          <Cell>IEEE754 floating point</Cell>
+          <Cell>1</Cell>
+          <Cell>32</Cell>
+        </Row>
+        <Row>
+          <Cell>IEEE754 floating point</Cell>
+          <Cell>2</Cell>
+          <Cell>32</Cell>
+        </Row>
+        <Row>
+          <Cell>IEEE754 floating point</Cell>
+          <Cell>3</Cell>
+          <Cell>32</Cell>
+        </Row>
+        <Row>
+          <Cell>IEEE754 floating point</Cell>
+          <Cell>4</Cell>
+          <Cell>32</Cell>
+        </Row>
+        <Row>
+          <Cell>IEEE754 floating point</Cell>
+          <Cell>1</Cell>
+          <Cell>64</Cell>
+        </Row>
+        <Row>
+          <Cell>IEEE754 floating point</Cell>
+          <Cell>2</Cell>
+          <Cell>64</Cell>
+        </Row>
+        <Row>
+          <Cell>IEEE754 floating point</Cell>
+          <Cell>3</Cell>
+          <Cell>64</Cell>
+        </Row>
+        <Row>
+          <Cell>IEEE754 floating point</Cell>
+          <Cell>4</Cell>
+          <Cell>64</Cell>
+        </Row>
+      </Table>
+    </FormalItem>
+  </Subsection>
+
+  <Subsection id="81cdfad5-986c-56d4-9ed8-25f9721b50f7"
+              title="Vertices">
+    <Paragraph>
+      A <Term type="term">vertex</Term> is an abstract object consisting of exactly one element taken from each of the
+      defined <Link target="e71d5f97-ed61-5ce0-bbb3-e65a2f3f8ba4">attributes</Link>. A vertex can essentially be
+      considered to be an array index; The vertex at index <Term type="expression">n</Term> can be considered to be the
+      aggregation of the <Term type="expression">nth</Term> elements of all the defined attributes. Vertices are
+      numbered starting at <Term type="expression">0</Term>.
+    </Paragraph>
+  </Subsection>
+
+  <Subsection id="3b7209f1-f0e6-5921-ace6-1fb6bd883bbd"
+              title="Triangles">
+    <Paragraph>
+      A triangle is a 3-tuple of <Link target="81cdfad5-986c-56d4-9ed8-25f9721b50f7">vertices</Link>. In the SMF model,
+      a triangle references vertices by their numeric index.
+    </Paragraph>
+  </Subsection>
+
+  <Subsection id="06f063de-5772-5748-800d-1358dd4b5599"
+              title="Coordinate System">
+    <Paragraph>
+      A <Term type="term">coordinate system</Term> in the SMF model is a set of three axis names and a
+      triangle <Term type="term">winding order</Term>. The axis names specify which Cartesian coordinate system axes
+      correspond to the <Term type="term">right</Term>, <Term type="term">up</Term>, and
+      <Term type="term">forward</Term>
+      directions. The winding order specifies whether vertices for triangles are given in clockwise or counter-clockwise
+      order. A coordinate system is only <Term type="term">valid</Term> if the three chosen axes have
+      different <Term type="term">axis names</Term>. The <Term type="function">axisName</Term> function relates an axis
+      to an axis name. The <Term type="function">axisValid</Term> function gives a formal definition of the validity of
+      sets of axes.
+    </Paragraph>
+    <FormalItem id="c3c772e3-b4be-5291-a171-648da411a961"
+                title="Axis">
+      <Verbatim>
+        <xi:include href="axis.hs"
+                    parse="text"
+                    xmlns:xi="http://www.w3.org/2001/XInclude"/>
+      </Verbatim>
+    </FormalItem>
+  </Subsection>
+
+  <Subsection id="c9f14807-8545-5bcd-953d-f1e7b4ec9934"
+              title="Schema ID">
+    <Paragraph>
+      A <Term type="term">schema identifier</Term> is an optional identifier that can be inserted into SMF files.
+      Because the SMF model does not predefine any particular
+      <Link target="e71d5f97-ed61-5ce0-bbb3-e65a2f3f8ba4">attributes</Link>, tools that consume SMF files cannot know
+      ahead of time if the file they have just loaded will actually contain the attributes that they are expecting. A
+      <Term type="term">schema identifier</Term>
+      effectively provides a concrete name for a set of attributes so that tools that process SMF files can perform
+      validation of attributes based on the identifier. It is somewhat analogous to XML namespace
+      <LinkFootnote target="dd10a6ed-c9b7-5e21-815d-ecc5eb77a93f"/>
+      declarations; The author of a particular document inserts an XML namespace identifier into their document, and
+      validation tools use this identifier to locate schema definitions against which the document is then validated.
+    </Paragraph>
+
+    <Paragraph>
+      A schema identifier consists of a string and two integer values:
+    </Paragraph>
+
+    <FormalItem id="5531ed7d-6362-56fe-a3c5-12562c5d5233"
+                title="Schema Identifier">
+      <Verbatim>
+        <xi:include href="schema-id.hs"
+                    parse="text"
+                    xmlns:xi="http://www.w3.org/2001/XInclude"/>
+      </Verbatim>
+    </FormalItem>
+
+    <Paragraph>
+      The <Term type="term">schema_id</Term> uniquely identifies the schema, and the
+      <Term type="term">schema_version_major</Term>
+      and
+      <Term type="term">schema_version_minor</Term>
+      values identify the version of the schema.
+    </Paragraph>
+
+    <Paragraph>
+      Schema names may be at most <Term type="constant">64</Term> characters in length and must conform to the following
+      syntax:
+    </Paragraph>
+
+    <FormalItem id="bc0c3bc8-b42e-5411-bf30-59fcc2930acb"
+                title="Schema Name Syntax">
+      <Verbatim>
+        <xi:include href="schema-name.ebnf"
+                    parse="text"
+                    xmlns:xi="http://www.w3.org/2001/XInclude"/>
+      </Verbatim>
+    </FormalItem>
+  </Subsection>
+
+  <Subsection id="6b0718c0-7562-5df6-ab48-c58bd12819cd"
+              title="Metadata">
+    <Paragraph>
+      The SMF model supports the inclusion of arbitrary metadata. A
+      <Term type="term">metadata value</Term>
+      is an opaque data value with a
+      <Term type="term">schema</Term>
+      identifier specified in the same manner as the <Link target="c9f14807-8545-5bcd-953d-f1e7b4ec9934">schema
+      identifier</Link>. Applications may use the metadata facilities to associate small amounts of extra information
+      with mesh data. Typical uses include checksums, copyright information, and generating software package version
+      information.
+    </Paragraph>
+  </Subsection>
+
+  <Footnote id="dd10a6ed-c9b7-5e21-815d-ecc5eb77a93f">
+    <LinkExternal target="https://en.wikipedia.org/wiki/XML_Namespace">
+      https://en.wikipedia.org/wiki/XML_Namespace
+    </LinkExternal>
+  </Footnote>
+
+  <Footnote id="b15c71a5-8fbd-58dc-bbb4-dcf49e178598">
+    <LinkExternal target="https://en.wikipedia.org/wiki/COLLADA">
+      https://en.wikipedia.org/wiki/COLLADA
+    </LinkExternal>
+  </Footnote>
+
+</Section>

@@ -25,7 +25,6 @@
     <module>com.io7m.smfj.blender</module>
     <module>com.io7m.smfj.cmdline</module>
     <module>com.io7m.smfj.core</module>
-    <module>com.io7m.smfj.documentation</module>
     <module>com.io7m.smfj.format.binary2</module>
     <module>com.io7m.smfj.format.obj</module>
     <module>com.io7m.smfj.format.support</module>
@@ -44,12 +43,16 @@
   </modules>
 
   <properties>
+    <!-- Configuration. -->
+    <io7m.api.previousVersion>0.15.0</io7m.api.previousVersion>
+    <io7m.java.targetJavaVersion>21</io7m.java.targetJavaVersion>
+
+    <!-- io7m dependencies. -->
     <com.io7m.blackthorne.version>1.3.1</com.io7m.blackthorne.version>
     <com.io7m.immutables.version>2.10.0</com.io7m.immutables.version>
     <com.io7m.jbssio.version>2.0.0</com.io7m.jbssio.version>
     <com.io7m.smfj.jtensors.versionRange>10.0.0</com.io7m.smfj.jtensors.versionRange>
-    <io7m.api.previousVersion>0.15.0</io7m.api.previousVersion>
-    <io7m.java.targetJavaVersion>21</io7m.java.targetJavaVersion>
+    <com.io7m.xstructural.version>1.8.0</com.io7m.xstructural.version>
   </properties>
 
   <licenses>
@@ -306,13 +309,6 @@
           <configuration>
             <suppressionsLocation>checkstyle-filter.xml</suppressionsLocation>
           </configuration>
-        </plugin>
-
-        <!-- KStructural Maven Plugin -->
-        <plugin>
-          <groupId>com.io7m.kstructural</groupId>
-          <artifactId>io7m-kstructural-maven-plugin</artifactId>
-          <version>0.3.1</version>
         </plugin>
       </plugins>
     </pluginManagement>

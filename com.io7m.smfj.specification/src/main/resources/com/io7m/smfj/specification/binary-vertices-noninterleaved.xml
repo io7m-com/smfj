@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Section id="95b43782-9a90-59e1-9402-e34ab966e75c"
+         title="Section - vertices-noninterleaved"
+         xmlns="urn:com.io7m.structural:8:0">
+
+  <Subsection id="3ab0474d-33a5-5ddf-a9b7-f77f7b4bd29f"
+              title="Definition">
+    <Paragraph>The <Term type="type">vertices-noninterleaved</Term> section specifies vertex data for all
+      declared <Link target="e71d5f97-ed61-5ce0-bbb3-e65a2f3f8ba4">attributes</Link>.
+    </Paragraph>
+  </Subsection>
+
+  <Subsection id="dc79dac4-9e1f-5dc7-8491-16aae307cd6b"
+              title="Cardinality/Ordering">
+    <Paragraph>
+      A <Term type="type">vertices-noninterleaved</Term> section can appear
+      <Term type="expression">[0, 1]</Term>
+      times in an <Term type="type">SMF/B</Term> file.
+    </Paragraph>
+    <Paragraph>
+      The <Term type="type">vertices-noninterleaved</Term> section has no requirements on ordering.
+    </Paragraph>
+  </Subsection>
+
+  <Subsection id="fdbdb4bb-afba-529b-8a7b-0fafd096cece"
+              title="Magic Number">
+    <Paragraph>The <Term type="type">vertices-noninterleaved</Term> section is identified by the magic
+      number <Term type="constant">0x534D465F56444E49</Term>.
+    </Paragraph>
+  </Subsection>
+
+  <Subsection id="506ad033-b062-501f-9907-705b2038b9b8"
+              title="Data">
+    <Paragraph>
+      The data for each attribute is given in full in the order in which the attributes were declared in the header.
+      Specifically, in a file containing <Term type="expression">v</Term> vertices and a list of attributes
+      <Term type="expression">a</Term>
+      of length <Term type="expression">n</Term>, the data of the section will contain
+      <Term type="expression">v</Term>
+      values of the type specified in <Term type="expression">a !! 0</Term>, followed by
+      <Term type="expression">v</Term>
+      values of the type specified by <Term type="expression">a !! 1</Term>, and so on up to <Term type="expression">a
+      !! (n - 1)</Term>. All values are stored in either big-endian or little-endian form depending on the order
+      specified in the <Link target="40cb8903-a1cb-500b-9a7a-044a1ffbc427">SMF</Link> section.
+    </Paragraph>
+    <Paragraph>
+      The start of the data for each attribute is aligned to the next <Term type="constant">16</Term> octet boundary
+      regardless of type. The alignment is achieved by inserting <Term type="term">padding octets</Term> at the end of
+      the data for each attribute so that the start of the data for the next attribute, or the start of the next
+      section, occurs on a <Term type="constant">16</Term> octet boundary.
+    </Paragraph>
+  </Subsection>
+</Section>

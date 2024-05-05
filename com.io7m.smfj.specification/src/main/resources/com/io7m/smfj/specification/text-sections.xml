@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Section xmlns="urn:com.io7m.structural:8:0"
+         id="55695ccc-be55-55f7-a953-246f23611dfd"
+         title="Sections">
+
+  <Subsection id="97a7d0df-bd1f-56e0-a4e6-f7306444d348"
+              title="Definition">
+    <Paragraph>
+      A <Term type="term">section</Term> is started with a
+      <Link target="55695ccc-be55-55f7-a953-246f23611dfd">section command</Link>
+      and terminated with a corresponding
+      <Link target="c4df0bae-7c47-5c8d-90da-3bddf539e1c8">end</Link>
+      command. Implementations MUST ignore any content between and including an unrecognized section command and the
+      corresponding end command<LinkFootnote target="47391323-ed7f-55f3-9dc9-21235a0cf81e"/>.
+    </Paragraph>
+
+    <Paragraph>
+      The first line of an <Term type="type">SMF/T</Term> file MUST begin an
+      <Link target="955596e3-9a19-5df8-93f2-c9b51e9e867a">smf</Link>
+      section.
+    </Paragraph>
+
+    <Paragraph id="c4df0bae-7c47-5c8d-90da-3bddf539e1c8">
+      A <Term type="term">section</Term> is terminated with an <Term type="command">end</Term> command. Implementations
+      MUST raise errors if an end-of-file condition is encountered before an
+      <Term type="command">end</Term>
+      command is given for the current section.
+    </Paragraph>
+
+    <FormalItem id="9b4bd0ab-c8df-50b4-bf66-a33a5d6a7082"
+                title="end">
+      <Verbatim>
+        <xi:include href="smft-end.ebnf"
+                    parse="text"
+                    xmlns:xi="http://www.w3.org/2001/XInclude"/>
+      </Verbatim>
+    </FormalItem>
+
+    <Paragraph>
+      The command takes no arguments.
+    </Paragraph>
+  </Subsection>
+
+  <Subsection id="ec8e0b35-a707-5977-a521-8a330a520ea7"
+              title="Available Sections">
+    <Paragraph>This version of the specification defines the following <Term type="term">sections</Term>:
+    </Paragraph>
+    <FormalItem id="473f3a30-8623-536a-893a-dc6f34b2d306"
+                title="Sections">
+      <ListUnordered>
+        <Item>
+          <Link target="955596e3-9a19-5df8-93f2-c9b51e9e867a">smf</Link>
+        </Item>
+        <Item>
+          <Link target="6dd79b55-6621-5c66-b468-77aa86bc20c0">triangles</Link>
+        </Item>
+        <Item>
+          <Link target="1b954b88-d1f3-578d-a746-9a4717d929bb">vertices-noninterleaved</Link>
+        </Item>
+        <Item>
+          <Link target="289313df-18f5-5fd2-9168-2701878e6b5f">metadata</Link>
+        </Item>
+      </ListUnordered>
+    </FormalItem>
+  </Subsection>
+
+  <Footnote id="47391323-ed7f-55f3-9dc9-21235a0cf81e">
+    Ignoring unrecognized sections allows for forwards compatibility: An implementation supporting version
+    <Term type="expression">m</Term>
+    can read a file of version <Term type="expression">n</Term>, where
+    <Term type="expression">m &lt; n</Term>, and ignore any new sections specified by format
+    <Term type="expression">n</Term>
+    that it does not understand.
+  </Footnote>
+</Section>

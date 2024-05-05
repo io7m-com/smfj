@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Section id="40cb8903-a1cb-500b-9a7a-044a1ffbc427"
+         title="Section - smf"
+         xmlns="urn:com.io7m.structural:8:0">
+
+  <Subsection id="c0c361f6-e8ed-5c89-a1ba-ab4919568bc1"
+              title="Definition">
+    <Paragraph>
+      The <Term type="type">smf</Term> section specifies information common to all sections in an
+      <Term type="type">SMF/B</Term>
+      file.
+    </Paragraph>
+  </Subsection>
+
+  <Subsection id="1f3d02b5-4c7a-5030-898e-fc7aabf5504e"
+              title="Cardinality/Ordering">
+    <Paragraph>
+      An <Term type="type">smf</Term> section MUST appear exactly once in an
+      <Term type="type">SMF/B</Term>
+      file.
+    </Paragraph>
+    <Paragraph>
+      The <Term type="type">smf</Term> section MUST be the first section in an <Term type="type">SMF/B</Term> file.
+      Implementations MUST reject <Term type="type">SMF/B</Term> files that do not start with an
+      <Term type="type">smf</Term>
+      section.
+    </Paragraph>
+  </Subsection>
+
+  <Subsection id="8e33f9f3-aabc-57b8-8a41-8cb2b078b065"
+              title="Magic Number">
+    <Paragraph>
+      The <Term type="type">smf</Term> section is identified by the magic number
+      <Term type="constant">0x534D465F48454144</Term>.
+    </Paragraph>
+  </Subsection>
+
+  <Subsection id="7ad30ce9-de24-583d-af7d-64ceee046178"
+              title="Data">
+    <Paragraph>
+      The <Term type="type">smf</Term> section begins with the following structure:
+    </Paragraph>
+    <FormalItem id="32ea7576-3218-5829-b6a3-ac40447cec94"
+                title="SMF Header">
+      <Verbatim>
+        <xi:include href="binary-smf-header.txt"
+                    parse="text"
+                    xmlns:xi="http://www.w3.org/2001/XInclude"/>
+      </Verbatim>
+    </FormalItem>
+    <Paragraph>
+      The <Term type="field">fieldsSize</Term> field specifies the total size of the header fields, after which a list
+      of attributes will be declared. The purpose of this field is to allow for forward compatibility: Future updates to
+      this specification may add extra fields to the end of the header structure, and the value of this field allows
+      older implementations to skip those newer fields.
+    </Paragraph>
+
+    <Paragraph>
+      The <Term type="field">schemaIdentifier</Term> field specifies the
+      <Link target="c9f14807-8545-5bcd-953d-f1e7b4ec9934">schema identifier</Link>
+      for the model:
+    </Paragraph>
+
+    <FormalItem id="2daf2b15-33d4-5903-902e-8a7592f31812"
+                title="Schema Identifier">
+      <Verbatim>
+        <xi:include href="binary-smf-schema.txt"
+                    parse="text"
+                    xmlns:xi="http://www.w3.org/2001/XInclude"/>
+      </Verbatim>
+    </FormalItem>
+
+    <Paragraph>
+      If the length of the <Term type="field">schema_id</Term> field is <Term type="constant">0</Term>, the schema
+      identifier as a whole is ignored.
+    </Paragraph>
+
+    <Paragraph>
+      The <Term type="field">vertexCount</Term> field specifies the number of vertices that will be specified in a
+      <Link target="95b43782-9a90-59e1-9402-e34ab966e75c">vertices-noninterleaved</Link>
+      section. Parsers MUST raise an appropriate error if a non-zero vertex count is specified but no vertices are
+      actually provided in any following section.
+    </Paragraph>
+
+    <Paragraph>
+      The <Term type="field">triangleCount</Term> field specifies the number of triangles that will be specified in a
+      <Link target="84daa411-ca50-505f-8abe-6f85d56769d1">triangles</Link>
+      section. The
+      <Term type="field">triangleSizeBits</Term>
+      field specifies the size in bits of the individual vertex indices within each triangle. Parsers MUST raise an
+      appropriate error if a non-zero triangle count is specified but no triangles are actually provided in any
+      following section.
+    </Paragraph>
+
+    <Paragraph>
+      The <Term type="field">attributeCount</Term> field specifies the number of
+      <Link target="e71d5f97-ed61-5ce0-bbb3-e65a2f3f8ba4">attributes</Link>
+      that will be declared.
+    </Paragraph>
+
+    <Paragraph>
+      The <Term type="field">coordinateSystem</Term> field specifies the
+      <Link target="06f063de-5772-5748-800d-1358dd4b5599">coordinate system</Link>
+      of the model:
+    </Paragraph>
+
+    <FormalItem id="5e34e17b-a1b6-5b3b-9361-551a48da4c04"
+                title="Coordinate System">
+      <Verbatim>
+        <xi:include href="binary-smf-coords.txt"
+                    parse="text"
+                    xmlns:xi="http://www.w3.org/2001/XInclude"/>
+      </Verbatim>
+    </FormalItem>
+
+    <Paragraph>
+      The <Term type="term">axis</Term> and <Term type="term">winding order</Term> values are related to integer values
+      via the following functions:
+    </Paragraph>
+
+    <FormalItem id="05486107-6175-5002-a5e5-15aa478f07ef"
+                title="Coordinate System Mapping">
+      <Verbatim>
+        <xi:include href="axis_map.hs"
+                    parse="text"
+                    xmlns:xi="http://www.w3.org/2001/XInclude"/>
+      </Verbatim>
+    </FormalItem>
+
+    <Paragraph>
+      The <Term type="field">byteOrder</Term> field specifies the <Term type="term">endianness</Term> of the values in
+      the <Link target="95b43782-9a90-59e1-9402-e34ab966e75c">vertex</Link> and
+      <Link target="84daa411-ca50-505f-8abe-6f85d56769d1">triangle</Link>.
+    </Paragraph>
+
+    <Paragraph>
+      Directly following the end of the header structure is a series of attribute declarations:
+    </Paragraph>
+
+    <FormalItem id="274bace5-6889-5c3e-bfde-1a26ba37f1c3"
+                title="Attribute">
+      <Verbatim>
+        <xi:include href="binary-smf-attribute.txt"
+                    parse="text"
+                    xmlns:xi="http://www.w3.org/2001/XInclude"/>
+      </Verbatim>
+    </FormalItem>
+
+    <Paragraph>
+      The <Term type="field">name</Term> field specifies the name of the attribute. The
+      <Term type="field">componentKind</Term>
+      field specifies the type of the attribute components. The
+      <Term type="field">componentCount</Term>
+      field specifies the number of components in each value in the attribute, and the
+      <Term type="field">componentSizeBits</Term>
+      field specifies the size in bits of each component value.
+    </Paragraph>
+
+    <Paragraph>
+      Attribute component types are related to integer values via the following function:
+    </Paragraph>
+
+    <FormalItem id="04777811-cbfc-5583-af8d-1fea95bc5538"
+                title="Attribute Type Mapping">
+      <Verbatim>
+        <xi:include href="attribute_map.hs"
+                    parse="text"
+                    xmlns:xi="http://www.w3.org/2001/XInclude"/>
+      </Verbatim>
+    </FormalItem>
+  </Subsection>
+</Section>

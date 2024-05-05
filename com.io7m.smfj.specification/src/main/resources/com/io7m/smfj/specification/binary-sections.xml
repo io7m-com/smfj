@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Section id="7f9fb1e7-669b-5341-a60f-47c985fe3382"
+         title="Sections"
+         xmlns="urn:com.io7m.structural:8:0">
+
+  <Subsection id="56128649-3e31-545f-b7ea-1a2f9373181b"
+              title="Definition">
+    <Paragraph>
+      Directly following the <Link target="67030409-5790-527e-9e0b-a4adf8ae6ea0">header</Link>, an
+      <Term type="type">SMF/B</Term>
+      file consists of a series of <Term type="term">sections</Term>. A
+      <Term type="term">section</Term>
+      begins with the following fixed-size structure:
+    </Paragraph>
+
+    <FormalItem id="a66c84b9-0aed-558c-9e90-95b8af308b05"
+                title="Section header">
+      <Verbatim>
+        <xi:include href="binary-section-header.txt"
+                    parse="text"
+                    xmlns:xi="http://www.w3.org/2001/XInclude"/>
+      </Verbatim>
+    </FormalItem>
+
+    <Paragraph id="4bb9be61-2874-54c3-bd0d-68959d97e6f4">The <Term type="field">id</Term> field of the section header
+      identifies the type of the section. The <Term type="field">size</Term> field of the section header specifies
+      the <Term type="term">data size</Term>; the size in octets of the data that follows the section header. The
+      <Term type="term">data size</Term>
+      necessarily includes any trailing
+      <Term type="term">padding octets</Term>
+      that may be inserted in order to guarantee that the start of the <Term type="term">next</Term> section (if any) is
+      correctly <Link target="a70f20d2-13b9-572e-8081-c1cf1aa2cdfb">aligned</Link>. This implies that the
+      <Term type="term">data size</Term>
+      of any given section MUST be a multiple of the
+      <Link target="a70f20d2-13b9-572e-8081-c1cf1aa2cdfb">alignment</Link>
+      size.
+    </Paragraph>
+
+    <Paragraph>
+      Implementations MUST ignore any content inside a section of an unrecognized type
+      <LinkFootnote target="e34084ee-74a6-5084-80aa-1341afd64127"/>. As sections explicitly state the size of their own
+      data, implementations can simply seek forwards in the file by the specified data size to reach the next section.
+    </Paragraph>
+
+    <Paragraph>
+      The first section in an <Term type="type">SMF/B</Term> file MUST be an
+      <Link target="40cb8903-a1cb-500b-9a7a-044a1ffbc427">smf</Link>
+      section. The last section in an
+      <Term type="type">SMF/B</Term>
+      file MUST be an
+      <Link target="ab5a4bdc-b53d-5622-b3cf-4a40aee1a858">end</Link>
+      section.
+    </Paragraph>
+  </Subsection>
+
+  <Subsection id="a70f20d2-13b9-572e-8081-c1cf1aa2cdfb"
+              title="Alignment">
+    <Paragraph>
+      Sections MUST be aligned to <Term type="constant">16</Term> octet boundaries. As the section
+      <Link target="67030409-5790-527e-9e0b-a4adf8ae6ea0">header</Link>
+      is defined to be exactly
+      <Term type="constant">16</Term>
+      octets, this implies that the data within a section will also be aligned to a <Term type="constant">16</Term> octet
+      boundary
+      <LinkFootnote target="265ebe93-e3cd-54a3-a8da-ac75e1b429a5"/>.
+    </Paragraph>
+  </Subsection>
+
+  <Subsection id="065f3b0a-a2e0-5a10-803e-525a44062681"
+              title="Available Sections">
+    <Paragraph>This version of the specification defines the following sections:</Paragraph>
+    <FormalItem id="c3e45626-835b-5de3-a6be-4150517e8ae6"
+                title="Sections">
+      <ListUnordered>
+        <Item>
+          <Link target="ab5a4bdc-b53d-5622-b3cf-4a40aee1a858">end</Link>
+        </Item>
+        <Item>
+          <Link target="5eed08b6-d9a8-5e4f-b68a-7199059ca9de">metadata</Link>
+        </Item>
+        <Item>
+          <Link target="40cb8903-a1cb-500b-9a7a-044a1ffbc427">smf</Link>
+        </Item>
+        <Item>
+          <Link target="84daa411-ca50-505f-8abe-6f85d56769d1">triangles</Link>
+        </Item>
+        <Item>
+          <Link target="95b43782-9a90-59e1-9402-e34ab966e75c">vertices-noninterleaved</Link>
+        </Item>
+      </ListUnordered>
+    </FormalItem>
+  </Subsection>
+
+  <Subsection id="150e0cfe-b3bd-580a-b411-b82071a3b652"
+              title="Enumerating Sections">
+    <Paragraph>
+      Note: This subsection is <Term type="term">informative</Term>.
+    </Paragraph>
+
+    <Paragraph>
+      The design of sections allows for implementations to quickly enumerate all sections within a file using the
+      following strategy:
+    </Paragraph>
+
+    <FormalItem id="b1fc2f6d-3151-5409-a133-56fb855daa0c"
+                title="Enumerating Sections">
+      <Verbatim>
+        <xi:include href="binary-enumerating.java"
+                    parse="text"
+                    xmlns:xi="http://www.w3.org/2001/XInclude"/>
+      </Verbatim>
+    </FormalItem>
+
+    <Paragraph>
+      The <Term type="function">bytesAvailable</Term> method is assumed to return
+      <Term type="constant">true</Term>
+      if there are any bytes remaining in the file. The <Term type="function">currentOffset</Term> method is assumed to
+      return the current read position in octets within the file. The
+      <Term type="function">readUnsigned64</Term>
+      method is assumed to read a 64-bit big-endian integer from the current file, advancing the current read position
+      by 8 octets. The <Term type="function">readUnsigned32</Term> method is assumed to read a 32-bit big-endian integer
+      from the current file, advancing the current read position by 4 octets.
+    </Paragraph>
+  </Subsection>
+
+  <Footnote id="e34084ee-74a6-5084-80aa-1341afd64127">
+    Ignoring unrecognized sections allows for forwards compatibility: An implementation supporting version
+    <Term type="expression">m</Term>
+    can read a file of version <Term type="expression">n</Term>, where
+    <Term type="expression">m &lt; n</Term>, and ignore any new sections specified by format
+    <Term type="expression">n</Term>
+    that it does not understand.
+  </Footnote>
+
+  <Footnote id="265ebe93-e3cd-54a3-a8da-ac75e1b429a5">
+    The requirement for data to be aligned to <Term type="constant">16</Term> octet boundaries is intended to facilitate
+    implementations using vector instruction sets such as
+    <LinkExternal target="https://en.wikipedia.org/wiki/Streaming_SIMD_Extensions">SSE</LinkExternal>
+    to efficiently operate on memory-mapped <Term type="type">SMF/B</Term> files.
+  </Footnote>
+
+</Section>

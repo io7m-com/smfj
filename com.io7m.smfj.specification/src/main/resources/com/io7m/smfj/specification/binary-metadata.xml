@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Section id="5eed08b6-d9a8-5e4f-b68a-7199059ca9de"
+         title="Section - metadata"
+         xmlns="urn:com.io7m.structural:8:0">
+
+  <Subsection id="eae550d3-1bf0-5469-a069-df867f3a09e9"
+              title="Definition">
+    <Paragraph>The <Term type="type">metadata</Term> section specifies arbitrary metadata.
+    </Paragraph>
+  </Subsection>
+
+  <Subsection id="caf7c198-fd8c-5c27-a49e-0c9344d5679f"
+              title="Cardinality/Ordering">
+    <Paragraph>
+      A <Term type="type">metadata</Term> section can appear
+      <Term type="expression">[0, n]</Term>
+      times in an <Term type="type">SMF/B</Term> file, for any
+      <Term type="expression">n</Term>.
+    </Paragraph>
+    <Paragraph>
+      The <Term type="type">metadata</Term> section has no requirements on ordering.
+    </Paragraph>
+  </Subsection>
+
+  <Subsection id="e995f51e-1a35-582c-96c6-8d5afad9806e"
+              title="Magic Number">
+    <Paragraph>
+      The <Term type="type">metadata</Term> section is identified by the magic number
+      <Term type="constant">0x534D465F4D455441</Term>.
+    </Paragraph>
+  </Subsection>
+
+  <Subsection id="6f1f0062-8125-52ec-9060-eacb9a493ed2"
+              title="Data">
+    <Paragraph>
+      The data of a <Term type="type">metadata</Term> section starts with the following fixed-size header:
+    </Paragraph>
+
+    <FormalItem id="ebc006ae-fc09-54e1-83f7-5de45786b7e3"
+                title="Metadata Header">
+      <Verbatim>
+        <xi:include href="binary-metadata-header.txt"
+                    parse="text"
+                    xmlns:xi="http://www.w3.org/2001/XInclude"/>
+      </Verbatim>
+    </FormalItem>
+
+    <Paragraph>
+      The <Term type="field">metaSchemaIdentifier</Term>, field is intended to provide type information for the
+      metadata. It has the same semantics and purpose as
+      <Link target="c9f14807-8545-5bcd-953d-f1e7b4ec9934">schema identifiers</Link>. The
+      <Term type="field">metaSize</Term>
+      field specifies the size in octets of the metadata.
+    </Paragraph>
+  </Subsection>
+</Section>

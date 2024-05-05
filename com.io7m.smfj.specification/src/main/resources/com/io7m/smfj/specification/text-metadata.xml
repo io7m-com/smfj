@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Section id="289313df-18f5-5fd2-9168-2701878e6b5f"
+         title="Section - metadata"
+         xmlns="urn:com.io7m.structural:8:0">
+
+  <Subsection id="baaa8be0-392f-5fcc-bda8-4098d01545b3"
+              title="Definition">
+    <Paragraph>The <Term type="command">metadata</Term> section specifies an item of optional metadata that will be
+      attached to the model.
+    </Paragraph>
+
+    <FormalItem id="7ec978a7-7ba0-53e4-83d7-59818dd33298"
+                title="metadata">
+      <Verbatim>
+        <xi:include href="smft-metadata.ebnf"
+                    parse="text"
+                    xmlns:xi="http://www.w3.org/2001/XInclude"/>
+      </Verbatim>
+    </FormalItem>
+
+    <Paragraph>The command takes the following arguments:</Paragraph>
+
+    <FormalItem id="75d43209-37ea-53c0-a3e4-a24d2ecfe509"
+                title="meta Arguments">
+      <ListOrdered>
+        <Item>The schema ID</Item>
+        <Item>The major version of the schema</Item>
+        <Item>The minor version of the schema</Item>
+        <Item>The non-negative number of lines of metadata that will follow the command</Item>
+      </ListOrdered>
+    </FormalItem>
+
+    <Paragraph>
+      For any <Term type="variable">v</Term>, <Term type="variable">s</Term>, and <Term type="variable">
+      n</Term>, the command <Term type="command">meta v s n</Term> will indicate that the next
+      <Term type="expression">n</Term>
+      non-empty, non-commented lines will contain
+      <LinkExternal target="https://tools.ietf.org/html/rfc4648">RFC4648 base64url</LinkExternal>
+      encoded data of a type with vendor
+      <Term type="variable">v</Term>
+      and schema
+      <Term type="variable">s</Term>. Implementations MUST raise errors if there are not exactly
+      <Term type="variable">n</Term>
+      lines of data specified before the section's
+      <Link target="c4df0bae-7c47-5c8d-90da-3bddf539e1c8">end</Link>
+      command.
+    </Paragraph>
+
+  </Subsection>
+</Section>

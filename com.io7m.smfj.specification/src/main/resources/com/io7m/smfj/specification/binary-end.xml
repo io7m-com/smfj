@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Section id="ab5a4bdc-b53d-5622-b3cf-4a40aee1a858"
+         title="Section - end"
+         xmlns="urn:com.io7m.structural:8:0">
+
+  <Subsection id="14c26a3b-6eac-5906-b154-205df7a8eabf"
+              title="Definition">
+    <Paragraph>
+      The <Term type="type">end</Term> section indicates the end of an
+      <Term type="type">SMF/B</Term>
+      file.
+    </Paragraph>
+  </Subsection>
+
+  <Subsection id="66064ee0-cb0e-5827-a724-c760e31e2ef1"
+              title="Cardinality/Ordering">
+    <Paragraph>
+      An <Term type="type">end</Term> section must appear exactly once in an <Term type="type">SMF/B</Term> file.
+    </Paragraph>
+    <Paragraph>
+      The <Term type="type">end</Term> section MUST be the last section in an <Term type="type">SMF/B</Term> file.
+      Implementations MUST reject <Term type="type">SMF/B</Term> files that do not contain a terminating
+      <Term type="type">end</Term>
+      section.
+    </Paragraph>
+  </Subsection>
+
+  <Subsection id="17f6be1b-0cda-5c94-813b-82f272650084"
+              title="Magic Number">
+    <Paragraph>
+      The <Term type="type">end</Term> section is identified by the magic number <Term type="constant">
+      0x534D465F454E4421</Term>.
+    </Paragraph>
+  </Subsection>
+
+  <Subsection id="e48b86e1-8fc5-5bb0-9637-1f6b31b76bee"
+              title="Data">
+    <Paragraph>
+      The <Term type="type">end</Term> section contains no data. The specified
+      <Link target="4bb9be61-2874-54c3-bd0d-68959d97e6f4">data size</Link>
+      for the section MUST be
+      <Term type="constant">0</Term>.
+    </Paragraph>
+  </Subsection>
+</Section>

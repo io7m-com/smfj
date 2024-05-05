@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Section id="effb7ba4-5f29-5e7c-8009-7d0e5f400e0f"
+         title="Example"
+         xmlns="urn:com.io7m.structural:8:0">
+  <Paragraph>
+    The following is a complete example of an <Term type="type">SMF/T</Term> file:
+  </Paragraph>
+  <FormalItem id="6e009495-b915-55c4-ae28-ece3ee8a348d"
+              title="smf">
+    <Verbatim>
+      <xi:include href="example.smft"
+                  parse="text"
+                  xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    </Verbatim>
+  </FormalItem>
+</Section>

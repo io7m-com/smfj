@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Section id="84daa411-ca50-505f-8abe-6f85d56769d1"
+         title="Section - triangles"
+         xmlns="urn:com.io7m.structural:8:0">
+
+  <Subsection id="33c06c26-0299-50b1-901d-f04551ec417c"
+              title="Definition">
+    <Paragraph>
+      The <Term type="type">triangles</Term> section specifies triangle data.
+    </Paragraph>
+  </Subsection>
+
+  <Subsection id="ec0446b2-78b8-5278-bd36-a8a32ebba554"
+              title="Cardinality/Ordering">
+    <Paragraph>
+      A <Term type="type">triangles</Term> section can appear
+      <Term type="expression">[0, 1]</Term>
+      times in an
+      <Term type="type">SMF/B</Term>
+      file.
+    </Paragraph>
+
+    <Paragraph>
+      The <Term type="type">triangles</Term> section has no requirements on ordering.
+    </Paragraph>
+  </Subsection>
+
+  <Subsection id="2c3e46dd-7861-5592-9172-06d67ea4bff4"
+              title="Magic Number">
+    <Paragraph>
+      The <Term type="type">triangles</Term> section is identified by the magic number <Term type="constant">
+      0x534D465F54524953</Term>.
+    </Paragraph>
+  </Subsection>
+
+  <Subsection id="2354c377-e41f-5886-a701-ef27c485e2b0"
+              title="Data">
+    <Paragraph>
+      Triangles are specified as an array of 3-element unsigned integer vectors, with each integer component being of
+      the size declared in the preceding <Link target="7ad30ce9-de24-583d-af7d-64ceee046178">smf</Link> section. No
+      padding is inserted between triangles, but padding may need to be added at the end of the array in order to ensure
+      proper section <Link target="a70f20d2-13b9-572e-8081-c1cf1aa2cdfb">alignment</Link>. All values are stored in
+      either big-endian or little-endian form depending on the order specified in the
+      <Link target="40cb8903-a1cb-500b-9a7a-044a1ffbc427">SMF</Link>
+      section.
+    </Paragraph>
+  </Subsection>
+</Section>

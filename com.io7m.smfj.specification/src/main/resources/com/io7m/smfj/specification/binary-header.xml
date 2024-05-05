@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Section id="67030409-5790-527e-9e0b-a4adf8ae6ea0"
+         title="Header"
+         xmlns="urn:com.io7m.structural:8:0">
+
+  <Paragraph>
+    An <Term type="type">SMF/B</Term> file begins with the following fixed-size structure:
+  </Paragraph>
+
+  <FormalItem id="dfddb063-7084-5a0b-a2f9-61f1d627872f"
+              title="SMF/B Header">
+    <Verbatim>
+      <xi:include href="binary-header-start.txt"
+                  parse="text"
+                  xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    </Verbatim>
+  </FormalItem>
+
+  <Paragraph>
+    The value of the <Term type="field">magicNumber</Term> field MUST be
+    <Term type="constant">0x89534D460D0A1A0A</Term>. Implementations MUST immediately reject any files that do not begin
+    with this magic number. The derivation of this constant is taken almost verbatim from the PNG
+    <LinkFootnote target="23076fb5-4b69-50a7-91be-950df6538d4b"/>
+    file format with the characters
+    <Term type="constant">PNG</Term>
+    changed to
+    <Term type="constant">SMF</Term>.
+  </Paragraph>
+
+  <Paragraph>
+    The <Term type="field">versionMajor</Term> field specifies the
+    <Link target="a55cfb83-ff4e-587f-80e0-39c247e73af0">major</Link>
+    version number of the specification to which the data in the file is expected to conform. The
+    <Term type="field">versionMinor</Term>
+    field specifies the
+    <Link target="a55cfb83-ff4e-587f-80e0-39c247e73af0">minor</Link>
+    version number of the specification to which the data in the file is expected to conform.
+  </Paragraph>
+
+  <Footnote id="23076fb5-4b69-50a7-91be-950df6538d4b">
+    <LinkExternal target="https://en.wikipedia.org/wiki/Portable_Network_Graphics#File_header">
+      https://en.wikipedia.org/wiki/Portable_Network_Graphics#File_header
+    </LinkExternal>
+  </Footnote>
+
+</Section>

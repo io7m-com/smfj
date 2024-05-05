@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Section id="041114d0-27c7-5108-84bc-1fa7e30b79a6"
+         title="Overview"
+         xmlns="urn:com.io7m.structural:8:0">
+
+  <Paragraph>
+    The <Term type="type">SMF/B</Term> format is a binary encoding for
+    the <Link target="41ffed46-d986-5d4f-8890-eba8c6a49bdf">SMF model</Link>.
+  </Paragraph>
+
+  <Paragraph>
+    An <Term type="type">SMF/B</Term> file begins with a simple fixed-size
+    <Link target="67030409-5790-527e-9e0b-a4adf8ae6ea0">header</Link>
+    followed by a series of
+    <Link target="7f9fb1e7-669b-5341-a60f-47c985fe3382">sections</Link>
+    containing data and metadata.
+  </Paragraph>
+
+  <Paragraph>
+    All data in an <Term type="type">SMF/B</Term> file is written in <Term type="term">big-endian</Term> byte order,
+    with the exception of <Link target="84daa411-ca50-505f-8abe-6f85d56769d1">triangle</Link> and
+    <Link target="95b43782-9a90-59e1-9402-e34ab966e75c">vertex</Link>
+    data which may be electively written in big-endian or little-endian byte order based on the order specified in the
+    <Link target="40cb8903-a1cb-500b-9a7a-044a1ffbc427">SMF</Link>
+    section.
+  </Paragraph>
+
+</Section>
