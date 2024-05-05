@@ -77,14 +77,17 @@ public abstract class SMFSchemaParserContract
   public final void testIOError()
   {
     boolean caught = false;
-    try (SMFSchemaParserType parser = this.create(
-      Paths.get("/invalid"),
-      new BrokenInputStream())) {
-      final SMFPartialLogged<SMFSchema> r = parser.parseSchema();
-      showErrors(r);
-      Assertions.assertFalse(r.isSucceeded());
-      Assertions.assertTrue(r.errors().stream().anyMatch(e -> e.message().contains(
-        "I/O error")));
+    try {
+      try (SMFSchemaParserType parser = this.create(
+        Paths.get("/invalid"),
+        new BrokenInputStream())) {
+
+        final SMFPartialLogged<SMFSchema> r = parser.parseSchema();
+        showErrors(r);
+        Assertions.assertFalse(r.isSucceeded());
+        Assertions.assertTrue(r.errors().stream().anyMatch(e -> e.message().contains(
+          "I/O error")));
+      }
     } catch (final IOException e) {
       LOG.debug("caught: ", e);
       caught = true;

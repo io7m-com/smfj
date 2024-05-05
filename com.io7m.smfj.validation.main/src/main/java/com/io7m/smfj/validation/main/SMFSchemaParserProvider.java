@@ -19,6 +19,7 @@ package com.io7m.smfj.validation.main;
 import com.io7m.jcoords.core.conversion.CAxis;
 import com.io7m.jcoords.core.conversion.CAxisSystem;
 import com.io7m.jlexing.core.LexicalPosition;
+import com.io7m.jlexing.core.LexicalPositions;
 import com.io7m.junreachable.UnimplementedCodeException;
 import com.io7m.smfj.core.SMFAttributeName;
 import com.io7m.smfj.core.SMFComponentType;
@@ -41,6 +42,7 @@ import com.io7m.smfj.validation.api.SMFSchemaRequireVertices;
 import com.io7m.smfj.validation.api.SMFSchemaVersion;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.UncheckedIOException;
 import java.net.URI;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
@@ -601,12 +603,14 @@ public final class SMFSchemaParserProvider
     @Override
     public SMFPartialLogged<SMFSchema> parseSchema()
     {
-      final List<String> lines =
-        List.copyOf(IOUtils.readLines(this.stream, StandardCharsets.UTF_8));
-      final SMFTLineReaderType reader =
-        SMFTLineReaderList.create(this.uri, lines, 1);
+      SMFTLineReaderType reader = null;
 
       try {
+        final List<String> lines =
+          List.copyOf(IOUtils.readLines(this.stream, StandardCharsets.UTF_8));
+
+        reader = SMFTLineReaderList.create(this.uri, lines, 1);
+
         final Optional<List<String>> line = reader.line();
         if (line.isPresent()) {
           final SMFPartialLogged<SMFSchemaVersion> r_version =
@@ -631,10 +635,16 @@ public final class SMFSchemaParserProvider
             "Empty file: Must begin with an smf-schema version declaration",
             Optional.empty());
         return SMFPartialLogged.failed(error);
-      } catch (final IOException e) {
-        final SMFParseError error =
-          SMFParseError.of(reader.position(), "I/O error", Optional.of(e));
-        return SMFPartialLogged.failed(error);
+      } catch (final IOException | UncheckedIOException e) {
+        final LexicalPosition<URI> position;
+        if (reader != null) {
+          position = reader.position();
+        } else {
+          position = LexicalPositions.zero();
+        }
+        return SMFPartialLogged.failed(
+          SMFParseError.of(position, "I/O error", Optional.of(e))
+        );
       }
     }
 
