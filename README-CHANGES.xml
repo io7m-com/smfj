@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <c:changelog project="com.io7m.smfj" xmlns:c="urn:com.io7m.changelog:4.0">
   <c:releases>
-    <c:release date="2016-11-22T00:00:00+00:00" ticket-system="com.github.io7m.smf" version="0.1.0">
+    <c:release date="2016-11-22T00:00:00+00:00" is-open="false" ticket-system="com.github.io7m.smf" version="0.1.0">
       <c:changes>
         <c:change date="2016-11-22T00:00:00+00:00" summary="Initial release."/>
       </c:changes>
     </c:release>
-    <c:release date="2016-11-30T00:00:00+00:00" ticket-system="com.github.io7m.smf" version="0.2.0">
+    <c:release date="2016-11-30T00:00:00+00:00" is-open="false" ticket-system="com.github.io7m.smf" version="0.2.0">
       <c:changes>
         <c:change date="2016-11-30T00:00:00+00:00" summary="The Blender plugin may now export all meshes, or just the selected meshes.">
           <c:tickets>
@@ -31,7 +31,7 @@
         <c:change date="2016-11-18T00:00:00+00:00" summary="Add the ability to read Wavefront OBJ files for conversion."/>
       </c:changes>
     </c:release>
-    <c:release date="2016-12-28T00:00:00+00:00" ticket-system="com.github.io7m.smf" version="0.3.0">
+    <c:release date="2016-12-28T00:00:00+00:00" is-open="false" ticket-system="com.github.io7m.smf" version="0.3.0">
       <c:changes>
         <c:change compatible="false" date="2016-12-28T00:00:00+00:00" summary="Change serialization API to make implementations easier to write."/>
         <c:change date="2016-12-28T00:00:00+00:00" summary="Add API and tools to process meshes.">
@@ -42,7 +42,7 @@
         <c:change date="2016-12-27T00:00:00+00:00" summary="Export SMFImmutableStyleType."/>
       </c:changes>
     </c:release>
-    <c:release date="2016-12-29T00:00:00+00:00" ticket-system="com.github.io7m.smf" version="0.4.0">
+    <c:release date="2016-12-29T00:00:00+00:00" is-open="false" ticket-system="com.github.io7m.smf" version="0.4.0">
       <c:changes>
         <c:change date="2016-12-29T00:00:00+00:00" summary="Add schema-set and schema-check commands.">
           <c:tickets>
@@ -77,7 +77,7 @@
         <c:change compatible="false" date="2016-12-29T00:00:00+00:00" summary="Make the SMFMetadata vendor/schema fields into long values to ease the use of them as unsigned 32 bit values."/>
       </c:changes>
     </c:release>
-    <c:release date="2017-01-03T00:00:00+00:00" ticket-system="com.github.io7m.smf" version="0.5.0">
+    <c:release date="2017-01-03T00:00:00+00:00" is-open="false" ticket-system="com.github.io7m.smf" version="0.5.0">
       <c:changes>
         <c:change date="2017-01-03T00:00:00+00:00" summary="Allow the publication of new filter commands via a simple modular ServiceLoader-based resolution system.">
           <c:tickets>
@@ -87,7 +87,7 @@
         <c:change date="2016-12-29T00:00:00+00:00" summary="The io7m-smfj-format-obj module was exporting the wrong OSGi package."/>
       </c:changes>
     </c:release>
-    <c:release date="2017-01-03T00:00:00+00:00" ticket-system="com.github.io7m.smf" version="0.5.1">
+    <c:release date="2017-01-03T00:00:00+00:00" is-open="false" ticket-system="com.github.io7m.smf" version="0.5.1">
       <c:changes>
         <c:change date="2017-01-03T00:00:00+00:00" summary="Add the ability to list the available filter commands.">
           <c:tickets>
@@ -102,7 +102,7 @@
         </c:change>
       </c:changes>
     </c:release>
-    <c:release date="2017-01-10T00:00:00+00:00" ticket-system="com.github.io7m.smf" version="0.6.0">
+    <c:release date="2017-01-10T00:00:00+00:00" is-open="false" ticket-system="com.github.io7m.smf" version="0.6.0">
       <c:changes>
         <c:change date="2017-01-10T00:00:00+00:00" summary="Reduce severity of line parser log messages.">
           <c:tickets>
@@ -127,7 +127,7 @@
         </c:change>
       </c:changes>
     </c:release>
-    <c:release date="2017-01-23T00:00:00+00:00" ticket-system="com.github.io7m.smf" version="0.7.0">
+    <c:release date="2017-01-23T00:00:00+00:00" is-open="false" ticket-system="com.github.io7m.smf" version="0.7.0">
       <c:changes>
         <c:change date="2017-01-23T00:00:00+00:00" summary="Use jcoords 0.1.3 to fix OSGi."/>
         <c:change date="2017-01-23T00:00:00+00:00" summary="Add metadata-add and metadata-remove commands.">
@@ -148,12 +148,12 @@
         <c:change date="2017-01-16T00:00:00+00:00" summary="Add a schema language for the validation API"/>
       </c:changes>
     </c:release>
-    <c:release date="2017-01-23T00:00:00+00:00" ticket-system="com.github.io7m.smf" version="0.7.1">
+    <c:release date="2017-01-23T00:00:00+00:00" is-open="false" ticket-system="com.github.io7m.smf" version="0.7.1">
       <c:changes>
         <c:change date="2017-01-23T00:00:00+00:00" summary="Adjust OSGi annotations and dependencies."/>
       </c:changes>
     </c:release>
-    <c:release date="2017-01-27T00:00:00+00:00" ticket-system="com.github.io7m.smf" version="0.8.0">
+    <c:release date="2017-01-27T00:00:00+00:00" is-open="false" ticket-system="com.github.io7m.smf" version="0.8.0">
       <c:changes>
         <c:change compatible="false" date="2017-01-24T00:00:00+00:00" summary="Change bytebuffer API to allow failures; introduce a codebase-wide general error type.">
           <c:tickets>
@@ -169,7 +169,7 @@
         <c:change compatible="false" date="2017-01-27T00:00:00+00:00" summary="The byte buffer event method onAllocateTriangleBuffer() now takes an SMFTriangles value."/>
       </c:changes>
     </c:release>
-    <c:release date="2017-01-29T00:00:00+00:00" ticket-system="com.github.io7m.smf" version="0.9.0">
+    <c:release date="2017-01-29T00:00:00+00:00" is-open="false" ticket-system="com.github.io7m.smf" version="0.9.0">
       <c:changes>
         <c:change date="2017-01-29T00:00:00+00:00" summary="Enable Javaslang encodings for memory meshes."/>
         <c:change date="2017-01-29T00:00:00+00:00" summary="Add a delegating metadata listener.">
@@ -179,7 +179,7 @@
         </c:change>
       </c:changes>
     </c:release>
-    <c:release date="2017-04-09T00:00:00+00:00" ticket-system="com.github.io7m.smf" version="0.10.0">
+    <c:release date="2017-04-09T00:00:00+00:00" is-open="false" ticket-system="com.github.io7m.smf" version="0.10.0">
       <c:changes>
         <c:change date="2017-01-30T00:00:00+00:00" summary="Use the new jtensors [8.0.0, 9.0.0) release."/>
         <c:change date="2017-01-31T00:00:00+00:00" summary="Fix yet another Maven Shade issue.">
@@ -190,7 +190,7 @@
         <c:change date="2017-04-09T00:00:00+00:00" summary="Rename project. Use the new primogenitor POM and 2017 project conventions."/>
       </c:changes>
     </c:release>
-    <c:release date="2017-06-15T00:00:00+00:00" ticket-system="com.github.io7m.smf" version="0.11.0">
+    <c:release date="2017-06-15T00:00:00+00:00" is-open="false" ticket-system="com.github.io7m.smf" version="0.11.0">
       <c:changes>
         <c:change date="2017-04-25T00:00:00+00:00" summary="Implement version probing.">
           <c:tickets>
@@ -219,13 +219,13 @@
         <c:change compatible="false" date="2017-06-14T00:00:00+00:00" summary="Rename the &quot;formats&quot; command to &quot;list-formats&quot;."/>
       </c:changes>
     </c:release>
-    <c:release date="2017-06-18T00:00:00+00:00" ticket-system="com.github.io7m.smf" version="0.12.0">
+    <c:release date="2017-06-18T00:00:00+00:00" is-open="false" ticket-system="com.github.io7m.smf" version="0.12.0">
       <c:changes>
         <c:change date="2017-06-15T00:00:00+00:00" summary="Add a &quot;resample&quot; filter command to provide lossy resampling of vertex data."/>
         <c:change date="2017-06-15T00:00:00+00:00" summary="Add application information. Export application metadata in the Blender plugin, and add a filter command to generate application info as metadata."/>
       </c:changes>
     </c:release>
-    <c:release date="2017-06-18T00:00:00+00:00" ticket-system="com.github.io7m.smf" version="0.13.0">
+    <c:release date="2017-06-18T00:00:00+00:00" is-open="false" ticket-system="com.github.io7m.smf" version="0.13.0">
       <c:changes>
         <c:change compatible="false" date="2017-06-18T00:00:00+00:00" summary="Replace the attribute_offset field.">
           <c:tickets>
@@ -234,7 +234,7 @@
         </c:change>
       </c:changes>
     </c:release>
-    <c:release date="2017-06-21T00:00:00+00:00" ticket-system="com.github.io7m.smf" version="0.14.0">
+    <c:release date="2017-06-21T00:00:00+00:00" is-open="false" ticket-system="com.github.io7m.smf" version="0.14.0">
       <c:changes>
         <c:change date="2017-06-20T00:00:00+00:00" summary="Correctly handle a lack of triangles and vertex data in the byte buffer packer.">
           <c:tickets>
@@ -244,10 +244,13 @@
         <c:change compatible="false" date="2017-06-20T00:00:00+00:00" summary="Require parsers to fail on missing triangles and vertices."/>
       </c:changes>
     </c:release>
-    <c:release date="2020-04-04T14:55:59+00:00" ticket-system="com.github.io7m.smf" version="0.15.0">
+    <c:release date="2020-04-04T00:00:00+00:00" is-open="false" ticket-system="com.github.io7m.smf" version="0.15.0">
       <c:changes>
-        <c:change compatible="false" date="2020-04-04T14:55:59+00:00" summary="Full JPMS modularization and OSGi bundle baselining"/>
+        <c:change compatible="false" date="2020-04-04T00:00:00+00:00" summary="Full JPMS modularization and OSGi bundle baselining"/>
       </c:changes>
+    </c:release>
+    <c:release date="2024-05-05T13:11:30+00:00" is-open="true" ticket-system="com.github.io7m.smf" version="1.0.0">
+      <c:changes/>
     </c:release>
   </c:releases>
   <c:ticket-systems>

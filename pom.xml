@@ -53,6 +53,9 @@
     <com.io7m.jbssio.version>2.0.0</com.io7m.jbssio.version>
     <com.io7m.smfj.jtensors.versionRange>10.0.0</com.io7m.smfj.jtensors.versionRange>
     <com.io7m.xstructural.version>1.8.0</com.io7m.xstructural.version>
+
+    <!-- Third-party dependencies. -->
+    <org.junit.version>5.11.3</org.junit.version>
   </properties>
 
   <licenses>
@@ -262,16 +265,15 @@
         <artifactId>mockito-core</artifactId>
         <version>5.8.0</version>
       </dependency>
+
       <dependency>
-        <groupId>org.junit.jupiter</groupId>
-        <artifactId>junit-jupiter-engine</artifactId>
-        <version>5.10.1</version>
+        <groupId>org.junit</groupId>
+        <artifactId>junit-bom</artifactId>
+        <version>${org.junit.version}</version>
+        <type>pom</type>
+        <scope>import</scope>
       </dependency>
-      <dependency>
-        <groupId>org.junit.jupiter</groupId>
-        <artifactId>junit-jupiter-api</artifactId>
-        <version>5.10.1</version>
-      </dependency>
+
       <dependency>
         <groupId>org.hamcrest</groupId>
         <artifactId>hamcrest-core</artifactId>
