@@ -690,9 +690,11 @@ public final class SMFOBJImporter implements SMFOBJImporterType
 
   private enum TriangleState
   {
+    // CHECKSTYLE:OFF
     WANT_VERTEX_0,
     WANT_VERTEX_1,
     WANT_VERTEX_2
+    // CHECKSTYLE:ON
   }
 
   private static final class OriginalVertexIdentifier

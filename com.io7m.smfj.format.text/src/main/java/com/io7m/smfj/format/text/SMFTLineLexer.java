@@ -142,9 +142,11 @@ public final class SMFTLineLexer
 
   private enum State
   {
+    // CHECKSTYLE:OFF
     STATE_INITIAL,
     STATE_IN_WORD,
     STATE_IN_QUOTE,
     STATE_IN_QUOTE_ESCAPE
+    // CHECKSTYLE:ON
   }
 }
